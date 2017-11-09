@@ -32,7 +32,7 @@
 <meta property="og:image" content="https://lrscy.github.io/2017/04/29/Trans-Intro-to-NMT-with-GPUs-part1/Figure_1-624x224.png">
 <meta property="og:image" content="https://lrscy.github.io/2017/04/29/Trans-Intro-to-NMT-with-GPUs-part1/smt_nmt-624x351.png">
 <meta property="og:image" content="https://lrscy.github.io/2017/04/29/Trans-Intro-to-NMT-with-GPUs-part1/Figure_3-624x208.png">
-<meta property="og:updated_time" content="2017-11-09T15:54:20.168Z">
+<meta property="og:updated_time" content="2017-11-09T16:33:26.491Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="「译」GPU神经网络机器翻译导论（第一部分）">
 <meta name="twitter:description" content="原文名：Introduction to Neural Machine Translation with GPUs (part 1) 翻译自 NVIDIA 深度学习系列                                                                                              Theano              「译者">
@@ -233,8 +233,8 @@
 <p>另一方面，在此篇博客中，我将专注于最近提出一种称为神经网络机器翻译的方法。其中机器学习，特别是神经网络，拥有更多甚至全部的控制权。正如图2中左边部分所展示的。</p>
 <hr>
 <h2 id="神经网络机器翻译"><a href="#神经网络机器翻译" class="headerlink" title="神经网络机器翻译"></a>神经网络机器翻译</h2><p>就像普通的<a href="https://developer.nvidia.com/deep-learning" target="_blank" rel="external">深度学习</a>一样，神经网络机器翻译(NMT)不依赖于已经提前设计好的方法。（通过提前设计好的方法，也就是说那些没有学习的功能。）相比而言，NMT设计的目标是设计一个完全可训练的模型，其每一部分都是基于语料库进行调整，以最优化其翻译表现。</p>
-<p>一个完全可训练的NMT模型$\mathcal{M}$从尽可能的地道的表述源语言语句开始训练，到生成尽可能地道的目标语言语句停止。目前，我们来考虑一个词序列视作作一个句子的最原始的表示。（虽然对于大多数语言来说这并不合理，但是在尽可能的保证一般性的前提下，我会将词作为一个语言的最小的单位。）每一个序列中的词都被它在字典中的索引数字代替。例如，在基于词频率的英语词典中，第一个出现的词会被表示为整数1。我将用$X=(x_1, x_2, \cdots, x_T)$来表示源句子，用<br>$Y=(y_1, y<em>2, \ldots, y</em>{T})$ aaa $Y=(y_1, y<em>2, \cdots, y</em>{T’})$来表示目标句子。</p>
-<p>给出源句子$X=(x_1, x_2, \cdots, x_T)$的词索引，NMT模型$\mathcal{M}$会计算<br>$Y=(y_1, y<em>2, \dots, y</em>{T’})$的条件概率。接下来，我将阐述我们如何来建立一个神经网络来近似条件概率$p(Y|X)$。</p>
+<p>一个完全可训练的NMT模型$\mathcal{M}$从尽可能的地道的表述源语言语句开始训练，到生成尽可能地道的目标语言语句停止。目前，我们来考虑一个词序列视作作一个句子的最原始的表示。（虽然对于大多数语言来说这并不合理，但是在尽可能的保证一般性的前提下，我会将词作为一个语言的最小的单位。）每一个序列中的词都被它在字典中的索引数字代替。例如，在基于词频率的英语词典中，第一个出现的词会被表示为整数1。我将用$X=(x_1, x_2, \cdots, x_T)$来表示源句子，用$Y=(y_1, y<em>2, \cdots, y</em>{T’})$来表示目标句子。</p>
+<p>给出源句子$X=(x_1, x_2, \cdots, x_T)$的词索引，NMT模型$\mathcal{M}$会计算$Y=(y_1, y<em>2, \dots, y</em>{T’})$的条件概率。接下来，我将阐述我们如何来建立一个神经网络来近似条件概率$p(Y|X)$。</p>
 <hr>
 <h2 id="循环神经网络"><a href="#循环神经网络" class="headerlink" title="循环神经网络"></a>循环神经网络</h2><p>机器翻译的一个重要的特征，或是说基于自然语言的任何任务，是处理可变长度输入$X=(x_1, x_2, \dots, x_T)$和可变长度输出$Y=(y_1, y<em>2, \dots, y</em>{T’})$。换句话说，$T$和$T’$不固定。</p>
 <p>为了处理这些可变长度的输入和输出，我们需要用到循环神经网络（RNN）。目前广泛应用的前馈神经网络（比如卷积神经网络）除了网络自身的参数外不保留中间状态。无论何时，一个样例进入前馈神经网络，无论网络内部参数还是隐藏层的激活都是重新计算的而不受前一个样本的状态结果的影响。然而RNN在读入一个序列时保存了其内部状态（在当前情况下是词序列），因此能够处理任何长度的输入。</p>
@@ -285,7 +285,7 @@
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2017-11-09T15:54:20.168Z" itemprop="dateUpdated">2017-11-09 23:54:20</time>
+    Last updated: <time datetime="2017-11-09T16:33:26.491Z" itemprop="dateUpdated">2017-11-10 00:33:26</time>
 </span><br>
 
 
