@@ -28,15 +28,15 @@
 <meta property="og:site_name" content="Meow">
 <meta property="og:description" content="原文名：Introduction to Neural Machine Translation with GPUs (part 1) 翻译自 NVIDIA 深度学习系列                                                                                              Theano              「译者">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https://lrscy.github.io/images/Trans-Intro-to-NMT-with-GPUs/theano_logo-179x115.png">
-<meta property="og:image" content="https://lrscy.github.io/images/Trans-Intro-to-NMT-with-GPUs/part1/Figure_1-624x224.png">
-<meta property="og:image" content="https://lrscy.github.io/images/Trans-Intro-to-NMT-with-GPUs/part1/smt_nmt-624x351.png">
-<meta property="og:image" content="https://lrscy.github.io/images/Trans-Intro-to-NMT-with-GPUs/part1/Figure_3-624x208.png">
-<meta property="og:updated_time" content="2017-11-09T08:28:41.715Z">
+<meta property="og:image" content="https://lrscy.github.io/2017/04/29/Trans-Intro-to-NMT-with-GPUs-part1/theano_logo_179x115.png">
+<meta property="og:image" content="https://lrscy.github.io/2017/04/29/Trans-Intro-to-NMT-with-GPUs-part1/Figure_1-624x224.png">
+<meta property="og:image" content="https://lrscy.github.io/2017/04/29/Trans-Intro-to-NMT-with-GPUs-part1/smt_nmt-624x351.png">
+<meta property="og:image" content="https://lrscy.github.io/2017/04/29/Trans-Intro-to-NMT-with-GPUs-part1/Figure_3-624x208.png">
+<meta property="og:updated_time" content="2017-11-09T15:54:20.168Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="「译」GPU神经网络机器翻译导论（第一部分）">
 <meta name="twitter:description" content="原文名：Introduction to Neural Machine Translation with GPUs (part 1) 翻译自 NVIDIA 深度学习系列                                                                                              Theano              「译者">
-<meta name="twitter:image" content="https://lrscy.github.io/images/Trans-Intro-to-NMT-with-GPUs/theano_logo-179x115.png">
+<meta name="twitter:image" content="https://lrscy.github.io/2017/04/29/Trans-Intro-to-NMT-with-GPUs-part1/theano_logo_179x115.png">
     
         <link rel="alternate" type="application/atom+xml" title="Meow" href="/atom.xml">
     
@@ -162,7 +162,7 @@
     <aside class="post-widget">
         <nav class="post-toc-wrap" id="post-toc">
             <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#统计机器翻译"><span class="post-toc-number">1.</span> <span class="post-toc-text">统计机器翻译</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#统计机器翻译简述"><span class="post-toc-number">2.</span> <span class="post-toc-text">统计机器翻译简述</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#神经网络机器翻译"><span class="post-toc-number">3.</span> <span class="post-toc-text">神经网络机器翻译</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#循环神经网络"><span class="post-toc-number">4.</span> <span class="post-toc-text">循环神经网络</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#接下来的要讲述的事情"><span class="post-toc-number"></span> <span class="post-toc-text">接下来的要讲述的事情</span></a>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#统计机器翻译"><span class="post-toc-number">1.</span> <span class="post-toc-text">统计机器翻译</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#统计机器翻译简述"><span class="post-toc-number">2.</span> <span class="post-toc-text">统计机器翻译简述</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#神经网络机器翻译"><span class="post-toc-number">3.</span> <span class="post-toc-text">神经网络机器翻译</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#循环神经网络"><span class="post-toc-number">4.</span> <span class="post-toc-text">循环神经网络</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#接下来的要讲述的事情"><span class="post-toc-number">5.</span> <span class="post-toc-text">接下来的要讲述的事情</span></a></li></ol>
         </nav>
     </aside>
     
@@ -190,7 +190,7 @@
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="/images/Trans-Intro-to-NMT-with-GPUs/theano_logo-179x115.png" alt="Theano" title="">
+                    <img src="/2017/04/29/Trans-Intro-to-NMT-with-GPUs-part1/theano_logo_179x115.png" alt="Theano" title="">
                 </div>
                 <div class="image-caption">Theano</div>
             </figure>
@@ -205,27 +205,27 @@
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="/images/Trans-Intro-to-NMT-with-GPUs/part1/Figure_1-624x224.png" alt="Figure 1." title="">
+                    <img src="/2017/04/29/Trans-Intro-to-NMT-with-GPUs-part1/Figure_1-624x224.png" alt="Figure 1." title="">
                 </div>
                 <div class="image-caption">Figure 1.</div>
             </figure>
 <p><code>图1. 统计机器翻译</code></p>
-<p>机器翻译的一个重要的特征是翻译函数并非像其他机器学习应用一样是一对一的或多对一的（例如分类应用的函数就是多对一的），而是一对多的，也就是说一个源句子可能有多个可能的翻译结果。正因如此，模型的方法不是个确定性函数而是一个目标句子$y$对$x$的条件概率<br>$p(y|x)$<br>。条件概率能够对于多个分离度良好的结构或句子分配同等的高概率，这就使得源语言和目标语言的一对多关系得以成立。</p>
+<p>机器翻译的一个重要的特征是翻译函数并非像其他机器学习应用一样是一对一的或多对一的（例如分类应用的函数就是多对一的），而是一对多的，也就是说一个源句子可能有多个可能的翻译结果。正因如此，模型的方法不是个确定性函数而是一个目标句子$y$对$x$的条件概率$p(y|x)$。条件概率能够对于多个分离度良好的结构或句子分配同等的高概率，这就使得源语言和目标语言的一对多关系得以成立。</p>
 <p>现在，我们假设你将建立一个统计机器翻译系统并且要将英语翻译成法语。第一步且可能是最重要的一步是收集平行语料。我们用$x^n$和$y^n$来分别表示源语句和对应的翻译语句。上标$n$代表这是第$n$对语句（通常我们需要成千上万对语句才能训练出一个好的翻译模型）。我将用$D={(x^1,y^1), …, (x^N, y^N)}$来表示数据中有$N$对语句对。</p>
 <p>我们从哪里能得到这些训练语句对呢？对于机器翻译中广泛使用的语言，你可能想要查看<a href="http://www.statmt.org/wmt17/" target="_blank" rel="external">统计机器翻译研讨会 (EMNLP)</a>或者<a href="https://sites.google.com/site/iwsltevaluation2014/home" target="_blank" rel="external">国际语言翻译研讨会 (IWSLT)</a>。</p>
-<p>在有了训练集$D={(x^1,y^1), …, (x^N, y^N)}$后，我们能够通过观察这个模型在训练集$D$上的表现给这个模型打分。这分数（我将称之为模型的对数似然）是该模型对每一对$(x^n, y^n)$的对数似然的平均值。利用机器翻译模型的概率解释，模型在每一对上的对数似然只是模型给这一对语料<br>$\log p(y^n | x^n, \theta)$<br>评估的对数概率有多高。然后，整个模型的在训练集上的打分如下：</p>
+<p>在有了训练集$D={(x^1,y^1), …, (x^N, y^N)}$后，我们能够通过观察这个模型在训练集$D$上的表现给这个模型打分。这分数（我将称之为模型的对数似然）是该模型对每一对$(x^n, y^n)$的对数似然的平均值。利用机器翻译模型的概率解释，模型在每一对上的对数似然只是模型给这一对语料$\log p(y^n | x^n, \theta)$评估的对数概率有多高。然后，整个模型的在训练集上的打分如下：</p>
 <p>$$<br>\mathcal{L}(\theta, D) = \sum_{(x^n, y^n) \in D} \log p(y^n|x^n, \theta)<br>$$</p>
 <p>如果对数似然值$\mathcal{L}$很低，说明该模型没有分配给正确翻译句对足够的概率，也意味着该模型将部分概率分配给了错误的翻译。所以，我们希望找到一种模型的结构或者参数$\theta$来最大化对数似然或得分。</p>
-<p>在机器学习中，这被称为最大似然估计。除此之外我们还有一个更重要的问题：我们如何建立模型<br>$p(y|x, \theta)$<br>？</p>
+<p>在机器学习中，这被称为最大似然估计。除此之外我们还有一个更重要的问题：我们如何建立模型$p(y|x, \theta)$？</p>
 <hr>
-<h2 id="统计机器翻译简述"><a href="#统计机器翻译简述" class="headerlink" title="统计机器翻译简述"></a>统计机器翻译简述</h2><p>IBM T.J. 沃森研究中心「<a href="http://www.aclweb.org/anthology/J93-2003" target="_blank" rel="external">Brown et al., 1993</a>等其他参考文献」在20多年前就已经提出并回答了如何建立条件分布模型。从那时起，统计机器翻译(SMT)的核心就是一个线性对数模型，我们用有许多特征的线性组合近似了<br>$p(y|x)$<br>的对数：</p>
+<h2 id="统计机器翻译简述"><a href="#统计机器翻译简述" class="headerlink" title="统计机器翻译简述"></a>统计机器翻译简述</h2><p>IBM T.J. 沃森研究中心「<a href="http://www.aclweb.org/anthology/J93-2003" target="_blank" rel="external">Brown et al., 1993</a>等其他参考文献」在20多年前就已经提出并回答了如何建立条件分布模型。从那时起，统计机器翻译(SMT)的核心就是一个线性对数模型，我们用有许多特征的线性组合近似了$p(y|x)$的对数：</p>
 <p>$$<br>\log p(y|x) \approx \log p(y|x, \theta) = \sum_i \theta_i f_i(x, y) + C(\theta),<br>$$</p>
 <p>其中$C$是归一化常数。在这种情况下，很大一部分研究工作是要找到一组很好的特征函数$f_i$，并且有一本书已经详尽描述了关于其的所有细节「<a href="http://www.statmt.org/book/" target="_blank" rel="external">Koehn</a>」。</p>
 <p>在这种统计机器翻译方法中，通常来说机器学习需要做的只是寻找到一组能够平衡不同特征的系数$\theta_i$，或者从对数线性模型「<a href="http://www.google.com/url?q=http%3A%2F%2Fwww.sciencedirect.com%2Fscience%2Farticle%2Fpii%2FS0885230806000325&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNGsoe0L0ioiBqvl9tmmFRVPNozyNQ" target="_blank" rel="external">Schwenk, 2007</a>」中筛选或重新排序一组可能的翻译。更具体来所，神经网络已经被用作组成特征函数功能的一部分，也可以用来重新排序所谓的最佳可能翻译的列表，就像图2中中间和右边部分。</p>
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="/images/Trans-Intro-to-NMT-with-GPUs/part1/smt_nmt-624x351.png" alt="Figure 2." title="">
+                    <img src="/2017/04/29/Trans-Intro-to-NMT-with-GPUs-part1/smt_nmt-624x351.png" alt="Figure 2." title="">
                 </div>
                 <div class="image-caption">Figure 2.</div>
             </figure>
@@ -233,8 +233,8 @@
 <p>另一方面，在此篇博客中，我将专注于最近提出一种称为神经网络机器翻译的方法。其中机器学习，特别是神经网络，拥有更多甚至全部的控制权。正如图2中左边部分所展示的。</p>
 <hr>
 <h2 id="神经网络机器翻译"><a href="#神经网络机器翻译" class="headerlink" title="神经网络机器翻译"></a>神经网络机器翻译</h2><p>就像普通的<a href="https://developer.nvidia.com/deep-learning" target="_blank" rel="external">深度学习</a>一样，神经网络机器翻译(NMT)不依赖于已经提前设计好的方法。（通过提前设计好的方法，也就是说那些没有学习的功能。）相比而言，NMT设计的目标是设计一个完全可训练的模型，其每一部分都是基于语料库进行调整，以最优化其翻译表现。</p>
-<p>一个完全可训练的NMT模型$\mathcal{M}$从尽可能的地道的表述源语言语句开始训练，到生成尽可能地道的目标语言语句停止。目前，我们来考虑一个词序列视作作一个句子的最原始的表示。（虽然对于大多数语言来说这并不合理，但是在尽可能的保证一般性的前提下，我会将词作为一个语言的最小的单位。）每一个序列中的词都被它在字典中的索引数字代替。例如，在基于词频率的英语词典中，第一个出现的词会被表示为整数1。我将用$X=(x_1, x_2, \dots, x_T)$来表示源句子，用$Y=(y_1, y<em>2, \dots, y</em>{T’})$来表示目标句子。</p>
-<p>给出源句子$X=(x_1, x_2, \dots, x_T)$的词索引，NMT模型$\mathcal{M}$会计算$Y=(y_1, y<em>2, \dots, y</em>{T’})$的条件概率。接下来，我将阐述我们如何来建立一个神经网络来近似条件概率<br>$p(Y|X)$。</p>
+<p>一个完全可训练的NMT模型$\mathcal{M}$从尽可能的地道的表述源语言语句开始训练，到生成尽可能地道的目标语言语句停止。目前，我们来考虑一个词序列视作作一个句子的最原始的表示。（虽然对于大多数语言来说这并不合理，但是在尽可能的保证一般性的前提下，我会将词作为一个语言的最小的单位。）每一个序列中的词都被它在字典中的索引数字代替。例如，在基于词频率的英语词典中，第一个出现的词会被表示为整数1。我将用$X=(x_1, x_2, \cdots, x_T)$来表示源句子，用<br>$Y=(y_1, y<em>2, \ldots, y</em>{T})$ aaa $Y=(y_1, y<em>2, \cdots, y</em>{T’})$来表示目标句子。</p>
+<p>给出源句子$X=(x_1, x_2, \cdots, x_T)$的词索引，NMT模型$\mathcal{M}$会计算<br>$Y=(y_1, y<em>2, \dots, y</em>{T’})$的条件概率。接下来，我将阐述我们如何来建立一个神经网络来近似条件概率$p(Y|X)$。</p>
 <hr>
 <h2 id="循环神经网络"><a href="#循环神经网络" class="headerlink" title="循环神经网络"></a>循环神经网络</h2><p>机器翻译的一个重要的特征，或是说基于自然语言的任何任务，是处理可变长度输入$X=(x_1, x_2, \dots, x_T)$和可变长度输出$Y=(y_1, y<em>2, \dots, y</em>{T’})$。换句话说，$T$和$T’$不固定。</p>
 <p>为了处理这些可变长度的输入和输出，我们需要用到循环神经网络（RNN）。目前广泛应用的前馈神经网络（比如卷积神经网络）除了网络自身的参数外不保留中间状态。无论何时，一个样例进入前馈神经网络，无论网络内部参数还是隐藏层的激活都是重新计算的而不受前一个样本的状态结果的影响。然而RNN在读入一个序列时保存了其内部状态（在当前情况下是词序列），因此能够处理任何长度的输入。</p>
@@ -244,7 +244,7 @@
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="/images/Trans-Intro-to-NMT-with-GPUs/part1/Figure_3-624x208.png" alt="Figure 3." title="">
+                    <img src="/2017/04/29/Trans-Intro-to-NMT-with-GPUs-part1/Figure_3-624x208.png" alt="Figure 3." title="">
                 </div>
                 <div class="image-caption">Figure 3.</div>
             </figure>
@@ -275,7 +275,7 @@
 <li>Cho, Kyunghyun et al. “Learning phrase representations using rnn encoder-decoder for statistical machine translation.” arXiv preprint arXiv:1406.1078 (2014).</li>
 <li>Bengio, Yoshua, Patrice Simard, and Paolo Frasconi. “Learning long-term dependencies with gradient descent is difficult.” Neural Networks, IEEE Transactions on 5.2 (1994): 157-166.</li>
 </ul>
-<h1 id="接下来的要讲述的事情"><a href="#接下来的要讲述的事情" class="headerlink" title="接下来的要讲述的事情"></a>接下来的要讲述的事情</h1><p>在这篇博文中，我介绍了机器翻译，描述了统计机器翻译如何解决机器翻译的问题。在讲述统计机器翻译框架时，我讨论了神经网络如何用来提高翻译的整体表现。</p>
+<h2 id="接下来的要讲述的事情"><a href="#接下来的要讲述的事情" class="headerlink" title="接下来的要讲述的事情"></a>接下来的要讲述的事情</h2><p>在这篇博文中，我介绍了机器翻译，描述了统计机器翻译如何解决机器翻译的问题。在讲述统计机器翻译框架时，我讨论了神经网络如何用来提高翻译的整体表现。</p>
 <p>这系列博客的目标是介绍一个新的神经网络机器翻译模型；这篇博文奠定了基础，重点介绍了循环神经网络的两个核心能力：序列总结能力和序列概率建模能力。</p>
 <p>基于这两个特性，在下一篇博客中，我将讲述一个完整的基于循环神经网络的神经网络机器翻译系统。我也会想你展示为什么GPU对于神经网络机器翻译这么重要！</p>
 
@@ -285,7 +285,7 @@
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2017-11-09T08:28:41.715Z" itemprop="dateUpdated">2017-11-09 16:28:41</time>
+    Last updated: <time datetime="2017-11-09T15:54:20.168Z" itemprop="dateUpdated">2017-11-09 23:54:20</time>
 </span><br>
 
 
