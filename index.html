@@ -22,7 +22,7 @@
     <meta name="keywords" content="">
     <meta property="og:type" content="website">
 <meta property="og:title" content="Meow">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:url" content="https://lrscy.github.io/index.html">
 <meta property="og:site_name" content="Meow">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Meow">
@@ -82,13 +82,6 @@
             </li>
         
             <li class="waves-block waves-effect">
-              <a href="/categories"  >
-                <i class="icon icon-lg icon-th-list"></i>
-                Categories
-              </a>
-            </li>
-        
-            <li class="waves-block waves-effect">
               <a href="https://github.com/lrscy" target="_blank" >
                 <i class="icon icon-lg icon-github"></i>
                 Github
@@ -98,7 +91,7 @@
             <li class="waves-block waves-effect">
               <a href="/custom"  >
                 <i class="icon icon-lg icon-link"></i>
-                测试
+                About
               </a>
             </li>
         
@@ -153,11 +146,11 @@
     <ul class="post-list">
     
         <li class="post-list-item fade">
-            <article id="post-hello-world"
+            <article id="post-SSH-config"
   class="article-card article-type-post" itemprop="blogPost">
 
     <div class="post-meta">
-        <time class="post-time" title="2017-11-09 14:04:47" datetime="2017-11-09T06:04:47.969Z"  itemprop="datePublished">2017-11-09</time>
+        <time class="post-time" title="2017-05-02 00:00:00" datetime="2017-05-01T16:00:00.000Z"  itemprop="datePublished">2017-05-02</time>
 
         
 
@@ -169,7 +162,7 @@
 
   
     <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2017/11/09/hello-world/">Hello World</a>
+      <a class="post-title-link" href="/2017/05/02/SSH-config/">Ubuntu 16.04 LTS下(多)SSH配置</a>
     </h3>
   
 
@@ -179,13 +172,227 @@
     <div class="post-content" id="post-content" itemprop="postContent">
 
     
-        Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Qu...
+        本文记录了我配置同机多SSH时候的全过程。
+本文是在Ubuntu 16.04 LTS下配置的，如果使用其他操作系统请自行查找对应命令或解决方案。
+以下代码区域，带有$打头的表示需要在控制台（终端或称命令行）下面执行（不包括$符号）
+
+SSH安装Ubuntu 16.04 LTS自带openssh客户端，但是不带openssh服务器端。如果需要ssh localhost连接本地，那么需要安装op...
     
 
-        <a href="/2017/11/09/hello-world/" class="post-more waves-effect waves-button">
+        <a href="/2017/05/02/SSH-config/" class="post-more waves-effect waves-button">
             Continue reading...
         </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SSH/">SSH</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-Github-config"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2017-05-01 00:00:00" datetime="2017-04-30T16:00:00.000Z"  itemprop="datePublished">2017-05-01</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/05/01/Github-config/">Github配置</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        本文记录了我配置Github时候的全过程。
+本文是在Ubuntu 16.04LTS下配置的，如果使用其他操作系统请自行查找对应命令或解决方案。
+以下代码区域，带有$打头的表示需要在控制台（终端或称命令行）下面执行（不包括$符号）
+
+Git安装Ubuntu下需要安装git，输入命令如下：1$ sudo apt-get install git
+Github账户注册你需要一个Github的账户才能...
+    
+
+        <a href="/2017/05/01/Github-config/" class="post-more waves-effect waves-button">
+            Continue reading...
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Github/">Github</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SSH/">SSH</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-Ruby-base-config"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2017-05-01 00:00:00" datetime="2017-04-30T16:00:00.000Z"  itemprop="datePublished">2017-05-01</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/05/01/Ruby-base-config/">Ruby基础配置</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        Note: 本文内容节选复述了Ruby-China中的教程中的内容，其中有一两步和原版有出入（我踩到的坑）。如果需要看原版内容请点击上述链接。
+本文是在Ubuntu 16.04LTS环境下配置的，如果使用其他操作系统请自行查找对应命令或解决方案。
+以下代码区域，带有$打头的表示需要在控制台（终端或称命令行）下面执行（不包括$符号）
+
+由于ubuntu自带的ruby版本太老，所以需要从下列途径...
+    
+
+        <a href="/2017/05/01/Ruby-base-config/" class="post-more waves-effect waves-button">
+            Continue reading...
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ruby/">Ruby</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-Github-io-config"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2017-04-30 00:00:00" datetime="2017-04-29T16:00:00.000Z"  itemprop="datePublished">2017-04-30</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/04/30/Github-io-config/">从零起步搭建配置gtihub.io博客</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        本文旨在将我配置github.io博客全过程展现出来，帮助从零起步的小白们一步一步的配置属于自己的github.io博客。如果过程正哪一步骤错了，请各位大佬指出，谢谢～
+小白的入门门槛：
+
+需要耐心，耐心，耐心
+碰到问题自主去学习和在网上寻找答案
+
+本文是在Ubuntu 16.04LTS环境下配置的，如果使用其他操作系统请自行查找对应命令或解决方案。
+以下代码区域，带有$打头的表示需要在控制...
+    
+
+        <a href="/2017/04/30/Github-io-config/" class="post-more waves-effect waves-button">
+            Continue reading...
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Github-io/">Github.io</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Jekyll/">Jekyll</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mathjax/">Mathjax</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-Trans-Intro-to-NMT-with-GPUs-part1"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2017-04-29 00:00:00" datetime="2017-04-28T16:00:00.000Z"  itemprop="datePublished">2017-04-29</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/04/29/Trans-Intro-to-NMT-with-GPUs-part1/">「译」GPU神经网络机器翻译导论（第一部分）</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        原文名：Introduction to Neural Machine Translation with GPUs (part 1)
+翻译自 NVIDIA 深度学习系列
+
+                
+                    
+                    
+                
+                Theano
+            
+...
+    
+
+        <a href="/2017/04/29/Trans-Intro-to-NMT-with-GPUs-part1/" class="post-more waves-effect waves-button">
+            Continue reading...
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Deep-Learning/">Deep Learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GPU/">GPU</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NMT/">NMT</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Theano/">Theano</a></li></ul>
+
     </div>
     
 </article>
@@ -237,7 +444,7 @@ Qu...
 <div class="global-share" id="globalShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/&title=Meow&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://lrscy.github.io/&title=Meow&pic=https://lrscy.github.io/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -247,22 +454,22 @@ Qu...
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/&title=Meow&source=" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://lrscy.github.io/&title=Meow&source=" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/" data-title=" Facebook">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://lrscy.github.io/" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=Meow&url=http://yoursite.com/&via=http://yoursite.com" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=Meow&url=https://lrscy.github.io/&via=https://lrscy.github.io" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/" data-title=" Google+">
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://lrscy.github.io/" data-title=" Google+">
           <i class="icon icon-google-plus"></i>
         </a>
       </li>
@@ -273,7 +480,7 @@ Qu...
 <div class="page-modal wx-share" id="wxShare">
     <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
-    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJYAAACWCAAAAAAZai4+AAABW0lEQVR42u3aQQ7DIAxE0dz/0qnUVaUUMjNOF7W/VxVKw8sCMIbjkON8x6r9M/T/PhCwYDVindu4PqO0XNv1vmDBmszaD2y9S/33jQEWLFjC6/QFGBYsWL9muV3CggVrz1KSZmWy0JPvx3J5WLBasCrLbSVRfri+BQvW37JOM9xlOwtYsKax9CLRfhRXtrhGBgELVlPWSpptSvVk+qYvWLBgRUWiynWEL++BBQuW0KUy1BXWsgUWrGEsN2nOQNJRij67wILVlKUUZCvLuVJsks5gYcFqyqqUbt0jE2PqgQVrMMu9fJAdcCqTCCxY01jZQUi2uS2d/MCC1ZpVuXCQlWul1BwWrGGsLOXdd6kv5PVEHBasTqxsUtDTZXcqgQVrMisr/WTbVOkZWLBgyYPcPcMxMgVYsGA9tL1Uik3Lz4AFayQrS5rd1NmYE2DBGsbKrgtkxFI1CxasnqwXXY7FbVPN83MAAAAASUVORK5CYII=" alt="微信分享二维码">
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJYAAACWCAAAAAAZai4+AAABTklEQVR42u3awa6CQAwFUP7/pzF5KxN1cjtFk0fPrIgiHBa0tdPjiNf5t16P1+c8r+MbCwvrRqxzuda3/ARdX2d9LyysyaxqUFij8wf4+DkWFlacevMQgIWFdW2AyNPwXsGNhTWZlbzY1YT9o1oeC+sWrE4jqXr8o/4WFta/Yp1bqxMCoutjYQ1jrdPwVcGi2lTCwprGWpfCe8Giujn65nwsrJGspKl0VYWeBA4srGmsZEynOoLwxT+xWFg3Za23OpJvk7ZsXgpgYc1k7f14LwTkwwpYWFjVgZ5qgNisI7CwBrDyF7saIPbOxMLCSl7mvKTeayphYU1j9UcN9tI8FhZWv6TOw0RyXB13wMK6K6vfMOoECCwsrKQ4rhbTne3Vws4PFhZWI/O3NjixsLDi5N1vMGFhTWZVm0dJsEi2bbCwsPrjCHsNo+SBsbDGsB6R1ORcyyBhRgAAAABJRU5ErkJggg==" alt="微信分享二维码">
 </div>
 
 

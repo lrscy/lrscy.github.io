@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>Ubuntu 16.04 LTS下(多)SSH配置 | Meow</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="SSH">
+    <meta name="description" content="本文记录了我配置同机多SSH时候的全过程。 本文是在Ubuntu 16.04 LTS下配置的，如果使用其他操作系统请自行查找对应命令或解决方案。 以下代码区域，带有$打头的表示需要在控制台（终端或称命令行）下面执行（不包括$符号）  SSH安装Ubuntu 16.04 LTS自带openssh客户端，但是不带openssh服务器端。如果需要ssh localhost连接本地，那么需要安装opens">
+<meta name="keywords" content="SSH">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ubuntu 16.04 LTS下(多)SSH配置">
+<meta property="og:url" content="https://lrscy.github.io/2017/05/02/SSH-config/index.html">
+<meta property="og:site_name" content="Meow">
+<meta property="og:description" content="本文记录了我配置同机多SSH时候的全过程。 本文是在Ubuntu 16.04 LTS下配置的，如果使用其他操作系统请自行查找对应命令或解决方案。 以下代码区域，带有$打头的表示需要在控制台（终端或称命令行）下面执行（不包括$符号）  SSH安装Ubuntu 16.04 LTS自带openssh客户端，但是不带openssh服务器端。如果需要ssh localhost连接本地，那么需要安装opens">
+<meta property="og:updated_time" content="2017-11-09T08:28:18.115Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Ubuntu 16.04 LTS下(多)SSH配置">
+<meta name="twitter:description" content="本文记录了我配置同机多SSH时候的全过程。 本文是在Ubuntu 16.04 LTS下配置的，如果使用其他操作系统请自行查找对应命令或解决方案。 以下代码区域，带有$打头的表示需要在控制台（终端或称命令行）下面执行（不包括$符号）  SSH安装Ubuntu 16.04 LTS自带openssh客户端，但是不带openssh服务器端。如果需要ssh localhost连接本地，那么需要安装opens">
+    
+        <link rel="alternate" type="application/atom+xml" title="Meow" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Ruosen Li</h5>
+          <a href="mailto:ruosenlee@gmail.com" title="ruosenlee@gmail.com" class="mail">ruosenlee@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                Homepage
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/lrscy" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/custom"  >
+                <i class="icon icon-lg icon-link"></i>
+                About
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Ubuntu 16.04 LTS下(多)SSH配置</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Ubuntu 16.04 LTS下(多)SSH配置</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-05-01T16:00:00.000Z" itemprop="datePublished" class="page-time">
+  2017-05-02
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#SSH安装"><span class="post-toc-number">1.</span> <span class="post-toc-text">SSH安装</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#单SSH配置"><span class="post-toc-number">2.</span> <span class="post-toc-text">单SSH配置</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#多SSH配置"><span class="post-toc-number">3.</span> <span class="post-toc-text">多SSH配置</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#建立不同的SSH配置文件"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">建立不同的SSH配置文件</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#建立索引"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">建立索引</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#登录localhost"><span class="post-toc-number">4.</span> <span class="post-toc-text">登录localhost</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#常见提示及应对方法"><span class="post-toc-number">5.</span> <span class="post-toc-text">常见提示及应对方法</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#第一次登录"><span class="post-toc-number">5.1.</span> <span class="post-toc-text">第一次登录</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#known-hosts文件"><span class="post-toc-number">5.2.</span> <span class="post-toc-text">known_hosts文件</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-SSH-config"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Ubuntu 16.04 LTS下(多)SSH配置</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-05-02 00:00:00" datetime="2017-05-01T16:00:00.000Z"  itemprop="datePublished">2017-05-02</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>本文记录了我配置同机多SSH时候的全过程。</p>
+<p>本文是在Ubuntu 16.04 LTS下配置的，如果使用其他操作系统请自行查找对应命令或解决方案。</p>
+<p>以下代码区域，带有<code>$</code>打头的表示需要在控制台（终端或称命令行）下面执行（不包括<code>$</code>符号）</p>
+<hr>
+<h1 id="SSH安装"><a href="#SSH安装" class="headerlink" title="SSH安装"></a>SSH安装</h1><p>Ubuntu 16.04 LTS自带openssh客户端，但是不带openssh服务器端。如果需要ssh localhost连接本地，那么需要安装openssh-server，命令如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get install openssh-server</span><br></pre></td></tr></table></figure></p>
+<p>如果你的机器上没有装客户端的话需要执行以下命令安装：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get install openssh-client</span><br></pre></td></tr></table></figure></p>
+<p>至此，基础环境已经安装完了。</p>
+<h1 id="单SSH配置"><a href="#单SSH配置" class="headerlink" title="单SSH配置"></a>单SSH配置</h1><p>此节操作只适用于只需要免密码登录一个远程服务器的同学，如果你需要同时SSH远程登录多个服务器，那么请直接跳至下一节。</p>
+<p>对于单SSH配置，你只需要输入以下命令即可，此时为默认状态，你的个人信息不会被加入进去：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh-keygen -t rsa</span><br></pre></td></tr></table></figure></p>
+<p>如果你需要将个人信息（如邮箱）加入进去（比如远程访问Github时），那么请执行如下命令：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh-keygen -t rsa -C <span class="string">"youraddress@youremail.com"</span></span><br></pre></td></tr></table></figure></p>
+<p>这里有几点需要注意的：</p>
+<ol>
+<li>-C中的C是大写字母</li>
+<li>youraddress@youremail.com是你Github的注册邮箱</li>
+</ol>
+<p>对于上述两条命令，如果你远程登录时候需要设置密码，那么请在其提示时候输入密码。然后一路回车即可。</p>
+<p>然后你会发现在你的家目录（<code>~</code>或者<code>/home/username/</code>）下多了一个叫做<code>.ssh</code>的文件夹，里面有两个文件<code>id_rsa</code>和<code>id_rsa.pub</code>。这两个就是SSH生成的文件，你需要将公钥传给远程服务器（Github相关问题详见<a href="/github/ssh/2017/05/01/Github-config.html">Github配置</a>博文），然后就可以免密码远程登录了。</p>
+<h1 id="多SSH配置"><a href="#多SSH配置" class="headerlink" title="多SSH配置"></a>多SSH配置</h1><h2 id="建立不同的SSH配置文件"><a href="#建立不同的SSH配置文件" class="headerlink" title="建立不同的SSH配置文件"></a>建立不同的SSH配置文件</h2><p>首先你需要在家目录（<code>~</code>或者<code>/home/username/</code>）下建立一个.ssh文件夹，命令如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ mkdir .ssh</span><br></pre></td></tr></table></figure></p>
+<p>然后进入该文件夹（建议进入）：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> ~/.ssh</span><br></pre></td></tr></table></figure></p>
+<p>在该文件夹下，输入以下命令，后面我会介绍每个参数的作用：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh-keygen -t rsa -f ~/.ssh/id_rsa.blabla</span><br></pre></td></tr></table></figure></p>
+<p>如果你需要将个人信息（如邮箱）加入进去（比如远程访问Github时），那么请执行如下命令：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh-keygen -t rsa -f ~/.ssh/id_rsa.blabla -C <span class="string">"youraddress@youremail.com"</span></span><br></pre></td></tr></table></figure></p>
+<p>下面我们来分析下这两个命令。</p>
+<p><code>-t rsa</code>是指定你的加密算法。</p>
+<p><code>-f</code>是指定你的文件存储位置，我建议存在~/.ssh文件夹中。文件明明我建议按照我的格式写，<code>blabla</code>是该SSH配置文件的用途，比如.github, .localhost之类的。</p>
+<p><code>-C</code>注意这里C是大写字母。这里填写你的邮箱地址（顺便提一句配置Github时一定要填写你的注册邮箱，详见<a href="/github/ssh/2017/05/01/Github-config.html">Github配置</a>）。</p>
+<h2 id="建立索引"><a href="#建立索引" class="headerlink" title="建立索引"></a>建立索引</h2><p>因为你有多对SSH配置文件（.blabla和.blabla.pub是一对私钥和公钥），所以在远程登陆时，系统需要知道你需要将哪份私钥和远程的公钥进行匹配。所以你需要一个索引文件config。输入如下命令建立该文件：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ touch config</span><br></pre></td></tr></table></figure></p>
+<p>文件格式如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Host name</span><br><span class="line">    HostName hostname</span><br><span class="line">    User username</span><br><span class="line">    IdentityFile filepath</span><br></pre></td></tr></table></figure></p>
+<p>一个config文件中可以有多个上述结构，每个结构之间建议用一个空行隔开。下面解析下这个结构。</p>
+<p><code>Host</code>就是个名字，每个结构之间不得重复</p>
+<p><code>HostName</code>是远程主机的域名，比如github.com, localhost之类或者是一个固定的IP地址。</p>
+<p><code>User</code>就是你登录该远程主机的用户名。</p>
+<p><code>IdentityFile</code>就是对应该主机的私钥的文件路径。依上述教程，应为<code>~/.ssh/id_rsa.blabla</code>。</p>
+<h1 id="登录localhost"><a href="#登录localhost" class="headerlink" title="登录localhost"></a>登录localhost</h1><p>在配置软件环境时，有软件需要免密码登录localhost，也就是免密码登录本机。此时，你需要在<code>.ssh</code>目录下建立<code>authorized_keys</code>文件，命令如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ touch authorized_keys</span><br></pre></td></tr></table></figure></p>
+<p>建立此文件的目的是存储已知的SSH公钥信息。此时你需要将localhost的公钥复制进来。</p>
+<p>如果你是单SSH配置，则需要把id_rsa.pub文件复制进来。命令如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ cat id_rsa.pub &gt;&gt; authorized_keys</span><br></pre></td></tr></table></figure></p>
+<p>如果你是多SSH配置，依上述教程，你需要把id_rsa.localhost.pub复制进来，命令如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ cat id_rsa.localhost.pub &gt;&gt; authorized_keys</span><br></pre></td></tr></table></figure></p>
+<p>然后你就可以免密码登录localhost了。另外，如果需要添加其他已知SSH公钥的话，直接往<code>authorized_keys</code>中添加即可。</p>
+<h1 id="常见提示及应对方法"><a href="#常见提示及应对方法" class="headerlink" title="常见提示及应对方法"></a>常见提示及应对方法</h1><h2 id="第一次登录"><a href="#第一次登录" class="headerlink" title="第一次登录"></a>第一次登录</h2><p>第一次远程登录一个新的主机时一般会出现如下提示：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">The authenticity of host <span class="string">'xxx.com (xx.xx.xx.xx)'</span> can<span class="string">'t be established.</span></span><br><span class="line"><span class="string">RSA key fingerprint is xx:xx...xx:xx.</span></span><br><span class="line"><span class="string">Are you sure you want to continue connecting (yes/no)?</span></span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">输入yes即可。然后可能会出现如下警告，意味着要永久存储该机器的特征信息，不用理睬即可：</span><br></pre></td></tr></table></figure>
+<p>Warning: Permanently added ‘xxx.com,xx.xx.xx.xx’ (RSA) to the list of known hosts.<br>```</p>
+<h2 id="known-hosts文件"><a href="#known-hosts文件" class="headerlink" title="known_hosts文件"></a>known_hosts文件</h2><p>当你访问远程主机时，系统会记录远程主机的特征信息，这些信息都存储在known_hosts里面。如果你不小心删掉了的话，也没什么事请，就是下一次进行SSH链接时还会出现第一次登录的提示，按照提示输入yes即可。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2017-11-09T08:28:18.115Z" itemprop="dateUpdated">2017-11-09 16:28:18</time>
+</span><br>
+
+
+        
+    </div>
+    <footer>
+        <a href="https://lrscy.github.io">
+            <img src="/img/avatar.jpg" alt="Ruosen Li">
+            Ruosen Li
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SSH/">SSH</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://lrscy.github.io/2017/05/02/SSH-config/&title=《Ubuntu 16.04 LTS下(多)SSH配置》 — Meow&pic=https://lrscy.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://lrscy.github.io/2017/05/02/SSH-config/&title=《Ubuntu 16.04 LTS下(多)SSH配置》 — Meow&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://lrscy.github.io/2017/05/02/SSH-config/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Ubuntu 16.04 LTS下(多)SSH配置》 — Meow&url=https://lrscy.github.io/2017/05/02/SSH-config/&via=https://lrscy.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://lrscy.github.io/2017/05/02/SSH-config/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/05/01/Github-config/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Github配置</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+<section class="comments" id="comments">
+    <div id="disqus_thread"></div>
+    <script>
+    var disqus_shortname = 'true';
+    lazyScripts.push('//' + disqus_shortname + '.disqus.com/embed.js')
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Ruosen Li &copy; 2015 - 2017</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://lrscy.github.io/2017/05/02/SSH-config/&title=《Ubuntu 16.04 LTS下(多)SSH配置》 — Meow&pic=https://lrscy.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://lrscy.github.io/2017/05/02/SSH-config/&title=《Ubuntu 16.04 LTS下(多)SSH配置》 — Meow&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://lrscy.github.io/2017/05/02/SSH-config/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Ubuntu 16.04 LTS下(多)SSH配置》 — Meow&url=https://lrscy.github.io/2017/05/02/SSH-config/&via=https://lrscy.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://lrscy.github.io/2017/05/02/SSH-config/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACJElEQVR42u3ayXHDMBAEQOWfNB2ALHgGoFxFoPlyUbwaj/UeeL3i43o73n/9dH3y5PGZ2w4MDIzHMq7hMWbkr1x5/vheDAyMcxjjUDj+9E8vbqNl8q6P5zEwMDDKRyewJNHEwMDA+AYjCc1JIoiBgYExV8S2pWm+HP9ai2NgYDyQcVeR+Y2/vzLfwMDAeBTjKo9xAjcXLtu7fnkOBgbG1ow8wOVpWZ78rW/RwMDAOIeRf3TbaEs+Nx8h3LBRDAMD47GM9TVo221zgD+ux8DA2JqxMoZM7soDd578YWBgnMNYace3jbP8TDs0xcDA2JvRNuLzVG+uxlxqw2FgYBzDGKeD+TDg3mQxav9hYGBszbiriG2Tv/Fy5IuFgYGB0Qa+uTQxCfF5GoqBgbETo22HJcXtSlk7OUzFwMDYmjEXlcehdi7IJksQhXUMDIztGHmqlzPae9vR6WQ3DgMDYwtGXkC2SVsSytvFwsDAOIeRl5Q5tW2Z3bWNDAMDY29GG17btlr+zJVAjIGBcTLjrqZYniBOblPDwMA4jJF8UF1eTl1fN90wMDC2Y1zl0Y4q2/RxcskwMDC2Ztw1JVxvn7UjgcnxJwYGxmMZbZCda7G1287aDWoYGBgnMNqCc30YMPcfoBgMYGBgHMz4RgBtk8ilwQAGBsYxjHaEkG+hmBtRYGBgnMDIG2dJg35lkJBHUQwMjHMY6xsy5gLoXOHaFtIYGBgPZ/wAOHjk8zKulIkAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = 'Hey! Where are you!';
+            clearTimeout(titleTime);
+        } else {
+            document.title = 'Welcome back!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

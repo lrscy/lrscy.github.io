@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>Github配置 | Meow</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Github,SSH">
+    <meta name="description" content="本文记录了我配置Github时候的全过程。 本文是在Ubuntu 16.04LTS下配置的，如果使用其他操作系统请自行查找对应命令或解决方案。 以下代码区域，带有$打头的表示需要在控制台（终端或称命令行）下面执行（不包括$符号）  Git安装Ubuntu下需要安装git，输入命令如下：1$ sudo apt-get install git Github账户注册你需要一个Github的账户才能使用g">
+<meta name="keywords" content="Github,SSH">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Github配置">
+<meta property="og:url" content="https://lrscy.github.io/2017/05/01/Github-config/index.html">
+<meta property="og:site_name" content="Meow">
+<meta property="og:description" content="本文记录了我配置Github时候的全过程。 本文是在Ubuntu 16.04LTS下配置的，如果使用其他操作系统请自行查找对应命令或解决方案。 以下代码区域，带有$打头的表示需要在控制台（终端或称命令行）下面执行（不包括$符号）  Git安装Ubuntu下需要安装git，输入命令如下：1$ sudo apt-get install git Github账户注册你需要一个Github的账户才能使用g">
+<meta property="og:updated_time" content="2017-11-09T08:27:33.146Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Github配置">
+<meta name="twitter:description" content="本文记录了我配置Github时候的全过程。 本文是在Ubuntu 16.04LTS下配置的，如果使用其他操作系统请自行查找对应命令或解决方案。 以下代码区域，带有$打头的表示需要在控制台（终端或称命令行）下面执行（不包括$符号）  Git安装Ubuntu下需要安装git，输入命令如下：1$ sudo apt-get install git Github账户注册你需要一个Github的账户才能使用g">
+    
+        <link rel="alternate" type="application/atom+xml" title="Meow" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Ruosen Li</h5>
+          <a href="mailto:ruosenlee@gmail.com" title="ruosenlee@gmail.com" class="mail">ruosenlee@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                Homepage
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/lrscy" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/custom"  >
+                <i class="icon icon-lg icon-link"></i>
+                About
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Github配置</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Github配置</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-04-30T16:00:00.000Z" itemprop="datePublished" class="page-time">
+  2017-05-01
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Git安装"><span class="post-toc-number">1.</span> <span class="post-toc-text">Git安装</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Github账户注册"><span class="post-toc-number">2.</span> <span class="post-toc-text">Github账户注册</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#SSH配置"><span class="post-toc-number">3.</span> <span class="post-toc-text">SSH配置</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Github配置"><span class="post-toc-number">4.</span> <span class="post-toc-text">Github配置</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Github连接检查"><span class="post-toc-number">5.</span> <span class="post-toc-text">Github连接检查</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#本地个人信息配置"><span class="post-toc-number">6.</span> <span class="post-toc-text">本地个人信息配置</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-Github-config"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Github配置</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-05-01 00:00:00" datetime="2017-04-30T16:00:00.000Z"  itemprop="datePublished">2017-05-01</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>本文记录了我配置Github时候的全过程。</p>
+<p>本文是在Ubuntu 16.04LTS下配置的，如果使用其他操作系统请自行查找对应命令或解决方案。</p>
+<p>以下代码区域，带有<code>$</code>打头的表示需要在控制台（终端或称命令行）下面执行（不包括<code>$</code>符号）</p>
+<hr>
+<h1 id="Git安装"><a href="#Git安装" class="headerlink" title="Git安装"></a>Git安装</h1><p>Ubuntu下需要安装git，输入命令如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get install git</span><br></pre></td></tr></table></figure></p>
+<h1 id="Github账户注册"><a href="#Github账户注册" class="headerlink" title="Github账户注册"></a>Github账户注册</h1><p>你需要一个Github的账户才能使用github.io服务。所以去<a href="https://github.com" target="_blank" rel="external">github.com</a>点击右上角的Sign Up注册即可。</p>
+<h1 id="SSH配置"><a href="#SSH配置" class="headerlink" title="SSH配置"></a>SSH配置</h1><p>我们需要使用ssh来和github上的远程仓库进行通信，所以需要检查和配置ssh。</p>
+<p>首先需要检查电脑上现有的ssh key:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> ~/.ssh</span><br></pre></td></tr></table></figure></p>
+<p>如果提示：No such file or dictionary 则说明你是第一次使用git。</p>
+<p>如果你是第一次使用git，那么你需要做如下工作。否则可以跳过此节。</p>
+<p>生成新的SSH KEY:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh-keygen -t rsa -C <span class="string">"youraddress@youremail.com"</span></span><br></pre></td></tr></table></figure></p>
+<p>这里有几点需要注意的：</p>
+<ol>
+<li>-C中的C是大写字母</li>
+<li>youraddress@youremail.com是你Github的注册邮箱</li>
+</ol>
+<p>其余的一路回车就能完成了。其中.pub是公钥，需要给到远程主机上，这点我们下一节再讲。</p>
+<p>如果你需要连接多ssh终端，那么请自行搜索“多ssh配置”。</p>
+<h1 id="Github配置"><a href="#Github配置" class="headerlink" title="Github配置"></a>Github配置</h1><p>仅仅本地配置好了是不够的，你需要让你的github账户认识你。所以你需要按照以下步骤操作：</p>
+<ol>
+<li>去登录github账户，在右上角点击头像找到Settings</li>
+<li>点进去后点击左侧栏中的SSH and GPG keys</li>
+<li>点击右侧New SSH key</li>
+<li>随意输入个能带便当前机器的名字，并把本地.ssh目录下生成的关于github的.pub文件拷贝进来</li>
+<li>保存即可</li>
+</ol>
+<h1 id="Github连接检查"><a href="#Github连接检查" class="headerlink" title="Github连接检查"></a>Github连接检查</h1><p>当一切配置妥当后，在终端中输入<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh -T git@github.com</span><br></pre></td></tr></table></figure></p>
+<p>如果你是第一次输入此命令，可能遇到如下提示：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">The authenticity of host <span class="string">'github.com (207.97.227.239)'</span> can<span class="string">'t be established.</span></span><br><span class="line"><span class="string">RSA key fingerprint is xx:xx...xx:xx.</span></span><br><span class="line"><span class="string">Are you sure you want to continue connecting (yes/no)?</span></span><br></pre></td></tr></table></figure></p>
+<p>此时输入yes即可，然后会出现：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Hi xxx! You<span class="string">'ve successfully authenticated, but GitHub does not provide shell access.</span></span><br></pre></td></tr></table></figure></p>
+<p>此时表明你的github配置完成了</p>
+<h1 id="本地个人信息配置"><a href="#本地个人信息配置" class="headerlink" title="本地个人信息配置"></a>本地个人信息配置</h1><p>此时你已经可以通过SSH连接到Github了，但是还有一些个人信息需要完善才能够和Github愉快的通信。</p>
+<p>Git会依据本地设定的用户名和邮箱向远程主机提交更改，Github也是依据这些信息进行权限管理的。如果你当前只使用一个Github帐号，那么你需要以下两个命令来完善本地个人信息设定：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git config --global user.name <span class="string">"your github name"</span></span><br><span class="line">$ git config --global user.email <span class="string">"youraddress@youremail.com"</span></span><br></pre></td></tr></table></figure></p>
+<p>上述命令中your github name是你的github用户名，youraddress@youremail.com是你github的注册邮箱。</p>
+<p>如果你需要配置多Github账户，则需要用如下命令将–global所设置的参数撤销掉：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git config --global <span class="built_in">unset</span> user.name</span><br><span class="line">$ git config --global <span class="built_in">unset</span> user.email</span><br></pre></td></tr></table></figure></p>
+<p>在每个git根目录下自行建立个人信息，命令如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git config user.name <span class="string">"your github name"</span></span><br><span class="line">$ git config user.email <span class="string">"youraddress@youremail.com"</span></span><br></pre></td></tr></table></figure></p>
+<p>上述命令中your github name是你的github用户名，youraddress@youremail.com是你github的注册邮箱。</p>
+<p>至此，Git/Github已全部完成。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2017-11-09T08:27:33.146Z" itemprop="dateUpdated">2017-11-09 16:27:33</time>
+</span><br>
+
+
+        
+    </div>
+    <footer>
+        <a href="https://lrscy.github.io">
+            <img src="/img/avatar.jpg" alt="Ruosen Li">
+            Ruosen Li
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Github/">Github</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SSH/">SSH</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://lrscy.github.io/2017/05/01/Github-config/&title=《Github配置》 — Meow&pic=https://lrscy.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://lrscy.github.io/2017/05/01/Github-config/&title=《Github配置》 — Meow&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://lrscy.github.io/2017/05/01/Github-config/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Github配置》 — Meow&url=https://lrscy.github.io/2017/05/01/Github-config/&via=https://lrscy.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://lrscy.github.io/2017/05/01/Github-config/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/05/02/SSH-config/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Ubuntu 16.04 LTS下(多)SSH配置</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/05/01/Ruby-base-config/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Ruby基础配置</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+<section class="comments" id="comments">
+    <div id="disqus_thread"></div>
+    <script>
+    var disqus_shortname = 'true';
+    lazyScripts.push('//' + disqus_shortname + '.disqus.com/embed.js')
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Ruosen Li &copy; 2015 - 2017</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://lrscy.github.io/2017/05/01/Github-config/&title=《Github配置》 — Meow&pic=https://lrscy.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://lrscy.github.io/2017/05/01/Github-config/&title=《Github配置》 — Meow&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://lrscy.github.io/2017/05/01/Github-config/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Github配置》 — Meow&url=https://lrscy.github.io/2017/05/01/Github-config/&via=https://lrscy.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://lrscy.github.io/2017/05/01/Github-config/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACMElEQVR42u3ay26kMBAF0P7/n+7ZRuqBvrdMImEOqxYixodFxfV4veLr/eP6eefzmc/nP588WvNo5csuDAyM2zLep9f5M+228vXzvWFgYDyHcRTBrvqdh93zsH54HwMDA+PS4JjAMDAwMFYY+Z0ksCZ3MDAwMPIktg3EecD901wcAwPjhoy86v73v3+lv4GBgXErxru81pPb5APVu8LAwNiakQe4fHM5vi3DfXkSAwNjU8YsXCYvm5X+k3GNVxuzMTAwbs5oG4cruXI7djYc4MDAwNiOkS+dk9q/yg+XX46GGBgYD2BcVQhLQu1smONwNQwMjAcwVspn56/PxyxWgi8GBsbTGO1ys0BZ5NbBmhgYGHsz2lCbD2EkK8yKdF86sRgYGNsxVkbBEsYsoa2PiRgYGFszZmW1NiC2h8XhsAUGBsamjLwBmWCubVgmhbz/5OIYGBjbMfItzhLR9fR1ae4MAwNjC0Zbjl9pQM7CaxTcMTAwtmasjHy15bYkZZ3dwcDAeA5jdkxsX7/yxi8hHgMD4wGMWfOy3ei16S4GBsbTGNfWtepNlAW4w8YABgbGdox3ea20AWYfa+lQiIGBsQXjqjZnOx4xC9ztcRMDA2MnRhJk24GttjHZfrL6vwcGBsYWjDYpzaN4MnIxGxfDwMDAaAcpEl47KFacYTEwMDB+uRnQfqaiv4GBgbERI0li27bByphFvTIGBsbWjNm5a1ZKOz8gJisvNTIxMDDux/gHw/bRP5VloGEAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = 'Hey! Where are you!';
+            clearTimeout(titleTime);
+        } else {
+            document.title = 'Welcome back!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
