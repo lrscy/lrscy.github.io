@@ -27,6 +27,7 @@
 <meta property="og:url" content="https://lrscy.github.io/2017/04/29/Trans-Intro-to-NMT-with-GPUs-part1/index.html">
 <meta property="og:site_name" content="Meow">
 <meta property="og:description" content="原文名：Introduction to Neural Machine Translation with GPUs (part 1) 翻译自 NVIDIA 深度学习系列                                                                                              Theano              「译者">
+<meta property="og:locale" content="en">
 <meta property="og:image" content="https://lrscy.github.io/images/Trans-Intro-to-NMT-with-GPUs/theano_logo-179x115.png">
 <meta property="og:image" content="https://lrscy.github.io/images/Trans-Intro-to-NMT-with-GPUs/part1/Figure_1-624x224.png">
 <meta property="og:image" content="https://lrscy.github.io/images/Trans-Intro-to-NMT-with-GPUs/part1/smt_nmt-624x351.png">
@@ -122,7 +123,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -177,7 +178,7 @@
 
 
             
-<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+<span id="busuanzi_container_page_pv" title="Total reading" style='display:none'>
     <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
 </span>
 
@@ -284,7 +285,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2017-11-09T08:28:41.715Z" itemprop="dateUpdated">2017-11-09 16:28:41</time>
+    Last updated: <time datetime="2017-11-09T08:28:41.715Z" itemprop="dateUpdated">2017-11-09 16:28:41</time>
 </span><br>
 
 
@@ -405,10 +406,10 @@
         
 <p>
     <span id="busuanzi_container_site_uv" style='display:none'>
-        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+        Total visitor：<span id="busuanzi_value_site_uv"></span>
     </span>
     <span id="busuanzi_container_site_pv" style='display:none'>
-        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+        Total visits：<span id="busuanzi_value_site_pv"></span>
     </span>
 </p>
 
@@ -417,7 +418,7 @@
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
         </p>
     </div>
     <div class="bottom">
@@ -545,10 +546,10 @@ MathJax.Hub.Queue(function() {
     var OriginTitile = document.title, titleTime;
     document.addEventListener('visibilitychange', function() {
         if (document.hidden) {
-            document.title = 'Hey! Where are you!';
+            document.title = 'Hey! I'm looking for you!';
             clearTimeout(titleTime);
         } else {
-            document.title = 'Welcome back!';
+            document.title = 'Welcome!';
             titleTime = setTimeout(function() {
                 document.title = OriginTitile;
             },2000);
