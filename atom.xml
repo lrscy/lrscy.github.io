@@ -42,6 +42,30 @@
   </entry>
   
   <entry>
+    <title>Ubuntu系统NVIDIA显卡驱动安装</title>
+    <link href="https://lrscy.github.io/2017/10/10/Ubuntu-NVIDIA-Driver-Install/"/>
+    <id>https://lrscy.github.io/2017/10/10/Ubuntu-NVIDIA-Driver-Install/</id>
+    <published>2017-10-09T16:00:00.000Z</published>
+    <updated>2017-11-10T12:03:05.899Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文是在Ubuntu17.04系统上安装NVIDIA驱动。</p><p>在Ubuntu16.04 LTS上安装驱动时是从<a href="https://www.geforce.cn/drivers" target="_blank" rel="external">NVIDIA 官网</a>上下载.run文件然后按照提示安装，但是在Ubuntu17.04上并不成功。因此寻找到了一种更为简便的方法，记录在此。</p><p>如果要在本机安装NVIDIA Driver的话请先用手机等设备照下关键步骤然后再执行。</p><h1 id="安装准备"><a href="#安装准备" class="headerlink" title="安装准备"></a>安装准备</h1><h2 id="查找合适的驱动"><a href="#查找合适的驱动" class="headerlink" title="查找合适的驱动"></a>查找合适的驱动</h2><p>在<a href="https://www.geforce.cn/drivers" target="_blank" rel="external">NVIDIA 官网</a>上寻找合适的驱动，并记住其版本号。例如，384.98的版本号是384。</p><h2 id="关闭图形界面"><a href="#关闭图形界面" class="headerlink" title="关闭图形界面"></a>关闭图形界面</h2><p>首先按住Ctrl+Alt+F1进入tty1模式，然后输入如下代码关闭图形界面（X Server）：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo stop lightdm</span><br></pre></td></tr></table></figure></p><p>lightdm指的是图形界面服务</p><h2 id="卸载之前NVIDIA显卡驱动"><a href="#卸载之前NVIDIA显卡驱动" class="headerlink" title="卸载之前NVIDIA显卡驱动"></a>卸载之前NVIDIA显卡驱动</h2><p>如果之前有尝试过其他驱动，则需要将其卸载步骤如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get purge nvidia-*</span><br></pre></td></tr></table></figure></p><p>如果采用的是.run文件安装的系统请采用如下命令卸载：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo ./NVIDIA-*.run --uninstall</span><br></pre></td></tr></table></figure></p><p>这里NVIDIA-*.run是下载的.run文件全名。</p><h1 id="安装NVIDIA显卡驱动"><a href="#安装NVIDIA显卡驱动" class="headerlink" title="安装NVIDIA显卡驱动"></a>安装NVIDIA显卡驱动</h1><p>因为无法通过.run方式安装驱动，因此采用从第三方源的方式安装驱动。</p><h2 id="添加第三方源"><a href="#添加第三方源" class="headerlink" title="添加第三方源"></a>添加第三方源</h2><p>这次采用的是mamarley源，添加该源的命令如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo add-apt-repository ppa:mamarley/nvidia</span><br></pre></td></tr></table></figure></p><p>然后进行更新源<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get update</span><br></pre></td></tr></table></figure></p><h2 id="安装NVIDIA显卡驱动-1"><a href="#安装NVIDIA显卡驱动-1" class="headerlink" title="安装NVIDIA显卡驱动"></a>安装NVIDIA显卡驱动</h2><p>在添加好第三方源后采用apt-get方式安装，命令如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get install nvidia-384</span><br></pre></td></tr></table></figure></p><p>本文安装的是384版本，请按照个人不同的需求输入合适的驱动版本号。</p><p>至此，驱动已经安装完成，但是请不要立即启动lightdm服务。请先输入以下命令重启系统：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ reboot</span><br></pre></td></tr></table></figure></p><h1 id="卸载驱动"><a href="#卸载驱动" class="headerlink" title="卸载驱动"></a>卸载驱动</h1><p>卸载驱动请按照“卸载之前NVIDIA驱动”所述内容进行卸载并重启。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;本文是在Ubuntu17.04系统上安装NVIDIA驱动。&lt;/p&gt;
+&lt;p&gt;在Ubuntu16.04 LTS上安装驱动时是从&lt;a href=&quot;
+      
+    
+    </summary>
+    
+    
+      <category term="NVIDIA" scheme="https://lrscy.github.io/tags/NVIDIA/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Ubuntu 16.04 LTS下(多)SSH配置</title>
     <link href="https://lrscy.github.io/2017/05/02/SSH-config/"/>
     <id>https://lrscy.github.io/2017/05/02/SSH-config/</id>
