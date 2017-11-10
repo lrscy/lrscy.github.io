@@ -28,10 +28,12 @@
 <meta property="og:site_name" content="Meow">
 <meta property="og:description" content="前言本文是在Ubuntu17.04系统上安装NVIDIA驱动。 在Ubuntu16.04 LTS上安装驱动时是从NVIDIA 官网上下载.run文件然后按照提示安装，但是在Ubuntu17.04上并不成功。因此寻找到了一种更为简便的方法，记录在此。 如果要在本机安装NVIDIA Driver的话请先用手机等设备照下关键步骤然后再执行。 安装准备查找合适的驱动在NVIDIA 官网上寻找合适的驱动，并">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2017-11-10T12:03:05.899Z">
+<meta property="og:image" content="https://lrscy.github.io/2017/10/10/Ubuntu-NVIDIA-Driver-Install/NVIDIA-X-Server-Settings.png">
+<meta property="og:updated_time" content="2017-11-10T12:28:20.206Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Ubuntu系统NVIDIA显卡驱动安装">
 <meta name="twitter:description" content="前言本文是在Ubuntu17.04系统上安装NVIDIA驱动。 在Ubuntu16.04 LTS上安装驱动时是从NVIDIA 官网上下载.run文件然后按照提示安装，但是在Ubuntu17.04上并不成功。因此寻找到了一种更为简便的方法，记录在此。 如果要在本机安装NVIDIA Driver的话请先用手机等设备照下关键步骤然后再执行。 安装准备查找合适的驱动在NVIDIA 官网上寻找合适的驱动，并">
+<meta name="twitter:image" content="https://lrscy.github.io/2017/10/10/Ubuntu-NVIDIA-Driver-Install/NVIDIA-X-Server-Settings.png">
     
         <link rel="alternate" type="application/atom+xml" title="Meow" href="/atom.xml">
     
@@ -157,7 +159,7 @@
     <aside class="post-widget">
         <nav class="post-toc-wrap" id="post-toc">
             <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#前言"><span class="post-toc-number">1.</span> <span class="post-toc-text">前言</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#安装准备"><span class="post-toc-number">2.</span> <span class="post-toc-text">安装准备</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#查找合适的驱动"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">查找合适的驱动</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#关闭图形界面"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">关闭图形界面</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#卸载之前NVIDIA显卡驱动"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">卸载之前NVIDIA显卡驱动</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#安装NVIDIA显卡驱动"><span class="post-toc-number">3.</span> <span class="post-toc-text">安装NVIDIA显卡驱动</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#添加第三方源"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">添加第三方源</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#安装NVIDIA显卡驱动-1"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">安装NVIDIA显卡驱动</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#卸载驱动"><span class="post-toc-number">4.</span> <span class="post-toc-text">卸载驱动</span></a></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#前言"><span class="post-toc-number">1.</span> <span class="post-toc-text">前言</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#安装准备"><span class="post-toc-number">2.</span> <span class="post-toc-text">安装准备</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#查找合适的驱动"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">查找合适的驱动</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#关闭图形界面"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">关闭图形界面</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#卸载之前NVIDIA显卡驱动"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">卸载之前NVIDIA显卡驱动</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#安装NVIDIA显卡驱动"><span class="post-toc-number">3.</span> <span class="post-toc-text">安装NVIDIA显卡驱动</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#添加第三方源"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">添加第三方源</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#安装NVIDIA显卡驱动-1"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">安装NVIDIA显卡驱动</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#检查安装结果"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">检查安装结果</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#异常处理"><span class="post-toc-number">4.</span> <span class="post-toc-text">异常处理</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#卸载驱动"><span class="post-toc-number">5.</span> <span class="post-toc-text">卸载驱动</span></a></li></ol>
         </nav>
     </aside>
     
@@ -195,6 +197,15 @@
 <h2 id="安装NVIDIA显卡驱动-1"><a href="#安装NVIDIA显卡驱动-1" class="headerlink" title="安装NVIDIA显卡驱动"></a>安装NVIDIA显卡驱动</h2><p>在添加好第三方源后采用apt-get方式安装，命令如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get install nvidia-384</span><br></pre></td></tr></table></figure></p>
 <p>本文安装的是384版本，请按照个人不同的需求输入合适的驱动版本号。</p>
 <p>至此，驱动已经安装完成，但是请不要立即启动lightdm服务。请先输入以下命令重启系统：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ reboot</span><br></pre></td></tr></table></figure></p>
+<h2 id="检查安装结果"><a href="#检查安装结果" class="headerlink" title="检查安装结果"></a>检查安装结果</h2><p>在命令行输入如下结果：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ nvidia-smi</span><br><span class="line">$ nvidia-settings</span><br></pre></td></tr></table></figure></p>
+<p>输入nvidia-smi命令后输出一个表格即为正常。<br>输入nvidia-settings出现下图即为正常。<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/2017/10/10/Ubuntu-NVIDIA-Driver-Install/NVIDIA-X-Server-Settings.png" alt="NVIDIA-X-Server-Settings" title="">
+                </div>
+                <div class="image-caption">NVIDIA-X-Server-Settings</div>
+            </figure></p>
+<h1 id="异常处理"><a href="#异常处理" class="headerlink" title="异常处理"></a>异常处理</h1><p>如果安装显卡后出现循环登录不进入桌面的情况请执行“安装准备”中的“关闭图形界面”和“卸载之前的NVIDIA显卡驱动”。</p>
 <h1 id="卸载驱动"><a href="#卸载驱动" class="headerlink" title="卸载驱动"></a>卸载驱动</h1><p>卸载驱动请按照“卸载之前NVIDIA驱动”所述内容进行卸载并重启。</p>
 
         </div>
@@ -203,7 +214,7 @@
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2017-11-10T12:03:05.899Z" itemprop="dateUpdated">2017-11-10 20:03:05</time>
+    Last updated: <time datetime="2017-11-10T12:28:20.206Z" itemprop="dateUpdated">2017-11-10 20:28:20</time>
 </span><br>
 
 
