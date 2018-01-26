@@ -23,7 +23,7 @@ post_asset_folder: true
 
 由于原生Hexo资源文件夹在生成真正博客时地址转换有问题，需要安装插件进行修正。执行如下命令安装插件：
 ``` bash
-npm install https://github.com/CodeFalling/hexo-asset-image --save
+$ npm install https://github.com/CodeFalling/hexo-asset-image --save
 ```
 当安装完成后就可以在写Markdown时很容易的使用资源文件夹下的图片了。
 
