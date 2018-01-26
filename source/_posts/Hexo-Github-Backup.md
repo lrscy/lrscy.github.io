@@ -12,12 +12,11 @@ categories: [Config]
 由于之前忘记备份Hexo博客的markdown文件，在重做系统时候还忘记备份博客了，导致现在不得不重新从网页上扒下来之前的文章重新写一遍，十分耗费精力。因此在网上找了下如何备份Hexo博客，在此记录下。
 
 目前假设Git和Github环境已经配置好了，如果没有配置好详见「[Ubuntu16.04下Github配置](/2017/05/01/Ubuntu-Github-config)」。
+Git相关操作请参考[廖雪峰的Git教程](https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000)。
 
 # 备份博客
 
 目前假设本地Hexo博客已经初始化，如果没有配置好Hexo博客详见「[Ubuntu16.04下从零起步搭建配置github.io博客————Hexo](/2017/11/10/Ubuntu-Github-io-config-Hexo)」。
-
-Git相关操作请参考[廖雪峰的Git教程](https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000)
 
 ## 创建新分支
 
@@ -33,7 +32,7 @@ $ git checkout -b BRANCHNAME
 
 ## 建立.gitignore
 
-建立.gitignore文件将不需要备份的文件屏蔽。个人的.gitignore文件如下：
+建立`.gitignore`文件将不需要备份的文件屏蔽。个人的`.gitignore`文件如下：
 ```
 .DS_Store
 Thumbs.db
