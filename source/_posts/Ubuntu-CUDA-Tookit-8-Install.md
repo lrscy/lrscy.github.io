@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Ubuntu系统CUDA Tookit 8安装
+title: Ubuntu 16.04下CUDA Tookit 8安装
 date: 2018-02-01 11:39:17
 tags: [Ubuntu, CUDA]
 categories: [Config]

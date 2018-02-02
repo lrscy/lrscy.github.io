@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Ubuntu16.04下从零起步搭建配置github.io博客——Hexo
+title: Ubuntu 16.04下从零起步搭建配置github.io博客——Hexo
 date: 2017-11-10
 tags: [Ubuntu, Github.io, Hexo]
 categories: [Config]

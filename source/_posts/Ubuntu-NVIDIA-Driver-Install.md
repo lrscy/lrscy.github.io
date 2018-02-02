@@ -9,9 +9,9 @@ categories: [Config]
 
 # 前言
 
-本文是在Ubuntu17.04系统上安装NVIDIA驱动。
+本文是在Ubuntu 17.04系统上安装NVIDIA驱动。
 
-在Ubuntu16.04 LTS上安装驱动时是从[NVIDIA 官网](https://www.geforce.cn/drivers)上下载.run文件然后按照提示安装，但是在Ubuntu17.04上并不成功。因此寻找到了一种更为简便的方法，记录在此。
+在Ubuntu 16.04 LTS上安装驱动时是从[NVIDIA 官网](https://www.geforce.cn/drivers)上下载.run文件然后按照提示安装，但是在Ubuntu 17.04上并不成功。因此寻找到了一种更为简便的方法，记录在此。
 
 如果要在本机安装NVIDIA Driver的话请先用手机等设备照下关键步骤然后再执行。
 

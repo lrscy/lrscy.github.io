@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Ubuntu16.04下Github配置
+title: Ubuntu 16.04下Github配置
 date: 2017-05-01
 tags: [Ubuntu, Github, SSH]
 categories: [Config]

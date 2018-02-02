@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Ubuntu16.04下(多)SSH配置
+title: Ubuntu 16.04下(多)SSH配置
 date: 2017-05-02
 tags: [Ubuntu, SSH]
 categories: [Config]

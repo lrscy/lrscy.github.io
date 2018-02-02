@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Ubuntu16.04下从零起步搭建配置github.io博客——Jekyll
+title: Ubuntu 16.04下从零起步搭建配置github.io博客——Jekyll
 date: 2017-04-30
 tags: [Ubuntu, Github.io, Jekyll]
 categories: [Config]
@@ -16,7 +16,7 @@ categories: [Config]
 需要耐心，耐心，耐心
 碰到问题自主去学习和在网上寻找答案
 
-本文是在Ubuntu 16.04LTS环境下配置的，如果使用其他操作系统请自行查找对应命令或解决方案。
+本文是在Ubuntu 16.04 LTS环境下配置的，如果使用其他操作系统请自行查找对应命令或解决方案。
 
 以下代码区域，带有`$`打头的表示需要在控制台（终端或称命令行）下面执行（不包括`$`符号）
 

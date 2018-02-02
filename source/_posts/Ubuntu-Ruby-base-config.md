@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Ubuntu16.04下Ruby基础配置
+title: Ubuntu 16.04下Ruby基础配置
 date: 2017-05-01
 tags: [Ubuntu, Ruby]
 categories: [Config]
@@ -9,7 +9,7 @@ categories: [Config]
 
 Note: 本文内容节选复述了[Ruby-China](https://ruby-china.org/wiki/install_ruby_guide)中的教程中的内容，其中有一两步和原版有出入（我踩到的坑）。如果需要看原版内容请点击上述链接。
 
-本文是在Ubuntu 16.04LTS环境下配置的，如果使用其他操作系统请自行查找对应命令或解决方案。
+本文是在Ubuntu 16.04 LTS环境下配置的，如果使用其他操作系统请自行查找对应命令或解决方案。
 
 以下代码区域，带有$打头的表示需要在控制台（终端或称命令行）下面执行（不包括$符号）
 
