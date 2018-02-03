@@ -93,7 +93,7 @@ less:
 
 # 以下评论插件开启一个即可
 # 是否开启 disqus
-disqus_shortname: true
+disqus_shortname: false
 # 是否开启友言评论, 填写友言用户id
 uyan_uid: false
 # 是否使用 gitment，https://github.com/imsun/gitment
@@ -106,11 +106,11 @@ gitment: false
 
 # Valine Comment system. https://valine.js.org
 valine:
-  enable: false # 如果你想使用valine，请将值设置为 true
-  appId:  # your leancloud appId
-  appKey:  # your leancloud appKey
+  enable: true # 如果你想使用valine，请将值设置为 true
+  appId:  flgn5yN4nyhhyKPBimaT89Q8-gzGzoHsz # your leancloud appId
+  appKey: 4yw3zmlMB7KjyFIzwIlYUnKz # your leancloud appKey
   notify: false # Mail notify
-  verify: false # Verify code
+  verify: true # Verify code
   avatar: mm # Gravatar style : mm/identicon/monsterid/wavatar/retro/hide
   placeholder: Just go go # Comment Box placeholder
   guest_info: nick,mail,link # Comment header info
@@ -149,3 +149,8 @@ lightbox: true
 
 # icp备案号  ICP_license: 京ICP备1234556号-1
 ICP_license: false
+
+feed:
+  type: atom
+  path: atom.xml
+  limit: 0
