@@ -132,8 +132,8 @@ about: false
 
 # “不蒜子”访问量统计，详见 http://ibruce.info/2015/04/04/busuanzi/
 visit_counter:
-  site_uv: Total Visits：
-  site_pv: Total Visitors： 
+  site_uv: UV：
+  site_pv: PV： 
 
 # 动态定义title
 title_change:
