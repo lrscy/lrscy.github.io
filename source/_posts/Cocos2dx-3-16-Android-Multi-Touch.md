@@ -23,7 +23,9 @@ void onTouchesBegan( const std::vector<cocos2d::Touch *> &touches,
 ```
 不再使用`set`作为触摸点的存储结构，而是采用`vector`。
 
-# onTouchesBegan传入参数touches的问题
+# onTouchesBegan/onTouchesEnded传入参数touches的问题
+
+先说`onTouchesBegan`函数的传入参数。`onTouchesEnded`和`onTouchesBegan`的逻辑几乎是一样的。
 
 开始参考网上多点触控的代码进行实验，但是在`onTouchesBegan`回调函数上永远出问题，后来发现`onTouchesBegan`回调函数的`touches`参数永远只存了一个变量（那你用vector存什么呀啊喂！）。在进行了众多测试以及上网寻找资料（不小心还挖了个坟emmmm）后决定仔细研究下官方的Testapp源码。
 
