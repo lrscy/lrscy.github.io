@@ -18,6 +18,9 @@ menu:
   th-list:
     text: Categories
     url: /categories
+  link:
+    text: Links
+    url: /links
   github:
     url: https://github.com/lrscy
     target: _blank
@@ -41,6 +44,7 @@ color: '#3F51B5'
 tags_title: Tags
 archives_title: Archives
 categories_title: Categories
+links_title: Links
 
 # 文章截断
 excerpt_render: false
