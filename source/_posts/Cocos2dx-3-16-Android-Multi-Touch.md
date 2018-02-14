@@ -48,3 +48,5 @@ void MultiTouchTest::onTouchesBegan( const std::vector<Touch *> &touches,
 最开始看代码的时候还一脸欢喜，这官方给的例子不是明显的在说`touches`里面会存多变量的么。直到我用`log`打出来`touches.size()`后才“惊喜”的发现这值也是`1`（那你用vector干嘛呢遍历啥呢啊喂！）。
 
 目前反推`onTouchesBegan`的设计逻辑是说一个指头的触摸激活一次`onTouchesBegan`，每个触摸的初始化单独做一次。这样的好处在于当多指相差时间很长才都按到屏幕上时，也能可以通过设计逻辑很容易的将其识别为多指操作，而不是多次单指操作。就算真的物理上是同时按住的时候也可能会给序列化处理成先后两次触摸。唯独麻烦的一点就是程序逻辑设计上要费点心思了。
+
+目前本人的方法是将所有`onTouchesBegan`读取到的触摸都`push_back`到一个`vector`中，在`onTouchesMoved`中分类处理，最终每触发一次`onTouchesEnded`时就`pop_back`掉一次。至于为什么没用`stack`结构，因为处理`onTouchesMoved`处理时候的读取用`vector`方便些。
