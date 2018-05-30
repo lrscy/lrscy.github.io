@@ -78,7 +78,7 @@ $ git clone https://github.com/yourgithubname/yourgithubname.github.io
 
 在克隆的那个文件夹下输入如下命令恢复博客：
 ``` bash
-$ npm install hexo
+$ npm install hexo-cli
 $ npm install
 $ npm install hexo-deployer-git
 ```

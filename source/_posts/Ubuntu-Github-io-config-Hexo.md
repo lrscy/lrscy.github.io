@@ -42,11 +42,11 @@ categories: [Config]
 对于Ubuntu系列系统，执行以下两个命令：
 ``` bash
 $ curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
-$ sudo apt-get install -y nodejs
+$ sudo apt install -y nodejs
 ```
 如果系统中没有安装`curl`，执行下述命令安装：
 ``` bash
-$ sudo apt-get install curl
+$ sudo apt install curl
 ```
 安装完成后需要检查下`node`和`npm`的版本：
 ``` bash
