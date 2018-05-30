@@ -24,6 +24,8 @@ Git相关操作请参考[廖雪峰的Git教程](https://www.liaoxuefeng.com/wiki
 
 虽然理论上什么时候创建新分支来备份都可以，但是还是建议在建立博客的时候就创建备份分支。（然而我中途才想起来-.-）
 
+不过在建立新分支前请确保仓库内已有`master`分支（Hexo本地建站后第一次上传时会自动生成），否则后期再添加`master`分支比较麻烦（请自行搜索`git`命令）。
+
 本地Git建立新分支命令如下：
 ``` bash
 $ git checkout -b BRANCHNAME
