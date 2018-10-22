@@ -1,5 +1,5 @@
 ---
-title: DeepLearningNotes-NNandDL
+title: Deep Learning Notes - Neural Network and Deep Learning
 date: 2018-10-22 12:32:25
 tags: [Deep Learning, Coursera]
 categories: [Deep Learning]
