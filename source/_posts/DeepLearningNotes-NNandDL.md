@@ -67,7 +67,7 @@ Secondly, thanks to the booming development of hardware and advanced algorithm, 
   <div class="image-caption">Iteration process</div>
 </div>
 
-# Basic Symbols of the course
+# Basic Symbols of the Course
 
 These basic symbols will be used through out the whole specialization.
 
@@ -86,5 +86,46 @@ Moreover, in this course, each input x will be stacked into columns and form the
   <img src="Output_y.png" width="50%" height="50%" />
   <div class="image-caption">Output y</div>
 </div>
+
+# Basics of Neural Network (Logistic Regression)
+
+## Basic equations
+
+In this part, we will take binary classification problem as an example.
+
+Logistic regression is basically the combination of linear regression and logistic function, such as sigmoid.
+
+The linear regression equation is: $$ z = w^Tx+b $$ 
+The sigmoid function equation is:  $$ a = sigmoid( z ) $$
+The combination euquation is:      $$ \hat{y} = a = sigmoid( w^Tx + b ) $$
+
+The visualization of this process is the folloing:
+
+<div align="center">
+  <img src="Logistic_Regression.png" />
+  <div class="image-caption">Logistic Regression</div>
+</div>
+
+Here, x only contains one example in one column, w contains a set of parameters, b has the same shape as w.
+
+Logistic regression is also a neural network without hidden layer, which is also called mini neural network. It has one input layer, X, and one output layer, a or $ \hat{y} $.
+
+## Cost function
+
+Here is a definition of loss function and cost function. Loss function computes a single training example while cost function is the average of the loss function of the whole training set.
+
+In traditional machine learning, we use square root error as loss function, which is $ L = \frac{1}{2}( \hat{y} - y )^2 $. But in this case, we don't use it since problems we try to solve are not convex, which isn't the same as the square root error function.
+
+Here is the loss function we use:
+
+$$
+L( \hat{y}, y ) = -( ylog(\hat{y}) + ( 1 - y )log( 1 - \hat{y} ) )
+$$
+
+For this loss function:
+- if y == 1, then $ L = -ylog(\hat{y}) $ and it will close to 0 when $ \hat{y} $ near 1.
+- if y == 0, then $ L = -( 1 - y )log( 1 - \hat{y} ) $ and it will close to 0 when $ \hat{y} $ near 0.
+
+Then the cost function is: $$ J( w, b ) = \frac{1}{m}\sum_{i=1}^{m} L( \hat{y}, y ) $$
 
 To be continue...
