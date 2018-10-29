@@ -10,6 +10,8 @@ This is a note of the first course of the "Deep Learning Specialization" at [Cou
 
 Almost all materials in this note come from courses' videos. The note combines knowledge from course and some of my understanding of these konwledge. I've reorganized the structure of the whole course according to my understanding. Thus, it doesn't strictly follow the order of videos.
 
+In this note, I will keep all function, equation vectorized (without for loop) as far as possible.
+
 If you want to read the notes which strictly follows the course, here are some recommendations:
 - [mbadry1's notes on Github](https://github.com/mbadry1/DeepLearning.ai-Summary)
 - [ppant's notes on Github](https://github.com/ppant/deeplearning.ai-notes)
@@ -89,14 +91,17 @@ Moreover, in this course, each input x will be stacked into columns and form the
 
 Reviewing the whole course, there are several common concepts between logistic regression and neural network (including both shallow and deep neural network). Thus, I draw conclusions on each concept and then apply them to both logistic regression and neural network.
 
-## Relation among logistic regression and neural network
+## Logistic Regression and Neural Network
 
 First of all, here are pictures of logistic regression and neural network.
 
-![Logistic Regression](Logistic_Regression.png)
-![Neural Network](Neural_Network.png)
+<div align="center"><img src="Logistic_Regression.png" width="60%" height="60%" />
+  <div class="image-caption">Logistic Regression</div>
+  <img src="Neural_Network.png" width="60%" height="60%" />
+  <div class="image-caption">Neural Network</div>
+</div>
 
-As we can see, logistic regression is also a kind of neural network, which has input layer and output layer and does not have hidden layers. In the following sections, I will only write neural network to represent logistic regression and neural network and use pictures similar to the second one to represent neural network.
+As we can see, logistic regression is also a kind of neural network, which has input layer and output layer and does not have hidden layers, so that it is also called mini neural network. In the following sections, I will write "neural network" to represent logistic regression and neural network and use pictures similar to the second one to represent neural network.
 
 ## Computation Graph
 
@@ -112,7 +117,67 @@ By analyzing the comutation graph, we can easily compute all deviatives. Accordi
 
 ## Forward Propagation
 
+### Computation on single neuron
+
+<div align="center"><img src="Logistic_Regression.png" width="60%" height="60%" />
+  <div class="image-caption">Computation on single neuron</div>
+</div>
+
+For every single neuron, the computing process is the same as the logistic regression. Logistic regression is basically the combination of linear regression and logistic function such as sigmoid. It has one input layer, x, and one output layer, a or $ \hat{y} $.
+
+The linear regression equation is:&ensp;$ z = w^Tx+b $ 
+The sigmoid function equation is:&ensp;$ a = sigmoid( z ) $
+The combination euquation is:&emsp;&ensp;&nbsp;$ \hat{y} = a = sigmoid( w^Tx + b ) $
+
+### The whole process on Neural Network
+
+<div align="center"><img src="Forward_Propagation_NN.png" width="90%" height="90%" />
+  <div class="image-caption">Forward Propagation</div>
+</div>
+
+This is an example of neural network. Since it only has one hidden layer, it's also called shallow neural network.
+
+The whole process when computing the 1<sup>st</sup> layer (hidden layer) is as the following:
+
+\begin{align}
+Z^{[1]} & = W^TX + b \\\\
+A^{[1]} & = sigmoid( Z^{[1]} )
+\end{align}
+
+In these equations
+- $W^T$ is a 4x3 matrix. It is also written as $W^{[1]}$. Its shape is always (# of neurons in this layer)x(# of neurons in previous layer).
+- $X$ is a 3x1 matrix. Sometimes it is also called $A^{[0]}$.
+- $b$ is a 4x1 matrix. Its shape is always (# of neurous in this layer)x1.
+- $A^{[1]}$ is a 4x1 matrix. Its shape is always (# of neurous in this layer)x1.
+- sigmoid is an element-wise function.
+
+For each layer, it just repeats what previous layers do until the last layer (output layer).
+
+### Cost function
+
+Here is a definition of loss function and cost function.
+- Loss function computes a single training example.
+- Cost function is the average of the loss function of the whole training set.
+
+In traditional machine learning, we use square root error as loss function, which is $ L = \frac{1}{2}( \hat{y} - y )^2 $. But in this case, we don't use it since most problems we try to solve are not convex.
+
+Here is the loss function we use:
+
+$$
+L( \hat{y}, y ) = -( y \cdot log(\hat{y}) + ( 1 - y ) \cdot log( 1 - \hat{y} ) )
+$$
+
+For this loss function:
+- if y == 1, then $ L = -y \cdot log(\hat{y}) $ and it will close to 0 when $ \hat{y} $ near 1.
+- if y == 0, then $ L = -( 1 - y ) \cdot log( 1 - \hat{y} ) $ and it will close to 0 when $ \hat{y} $ near 0.
+
+Then the cost function is: $$ J( w, b ) = \frac{1}{m}\sum_{i=1}^{m} L( \hat{y}, y ) $$
+
 ## Backward Propagation
+
+<div align="center"><img src="Backward_Propagation_NN.png" width="90%" height="90%" />
+  <div class="image-caption">Backward Propagation</div>
+</div>
 
 ## Activation Functions
 
@@ -120,48 +185,3 @@ By analyzing the comutation graph, we can easily compute all deviatives. Accordi
 
 ## Comparation of shallow and deep neural network
 
-
-
-
-## Basic equations
-
-In this part, we will take binary classification problem as an example.
-
-Logistic regression is basically the combination of linear regression and logistic function, such as sigmoid.
-
-The linear regression equation is: $$ z = w^Tx+b $$ 
-The sigmoid function equation is:  $$ a = sigmoid( z ) $$
-The combination euquation is:      $$ \hat{y} = a = sigmoid( w^Tx + b ) $$
-
-The visualization of this process is the folloing:
-
-<div align="center">
-  <img src="Logistic_Regression.png" />
-  <div class="image-caption">Logistic Regression</div>
-</div>
-
-Here, x only contains one example in one column, w contains a set of parameters, b has the same shape as w.
-
-Logistic regression is also a neural network without hidden layer, which is also called mini neural network. It has one input layer, X, and one output layer, a or $ \hat{y} $.
-
-## Cost function
-
-Here is a definition of loss function and cost function. Loss function computes a single training example while cost function is the average of the loss function of the whole training set.
-
-In traditional machine learning, we use square root error as loss function, which is $ L = \frac{1}{2}( \hat{y} - y )^2 $. But in this case, we don't use it since problems we try to solve are not convex, which isn't the same as the square root error function.
-
-Here is the loss function we use:
-
-$$
-L( \hat{y}, y ) = -( ylog(\hat{y}) + ( 1 - y )log( 1 - \hat{y} ) )
-$$
-
-For this loss function:
-- if y == 1, then $ L = -ylog(\hat{y}) $ and it will close to 0 when $ \hat{y} $ near 1.
-- if y == 0, then $ L = -( 1 - y )log( 1 - \hat{y} ) $ and it will close to 0 when $ \hat{y} $ near 0.
-
-Then the cost function is: $$ J( w, b ) = \frac{1}{m}\sum_{i=1}^{m} L( \hat{y}, y ) $$
-
-
-
-To be continued...
