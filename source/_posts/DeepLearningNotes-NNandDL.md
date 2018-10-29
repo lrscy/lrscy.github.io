@@ -35,8 +35,7 @@ We start with supervised learning. Here are several types of neural network (NN)
 
 Here are some pictures of Standard NN, Convolutional NN, Recurrent NN: 
 
-<div align="center">
-  <img src="Standard_NN.png" height="70%" width="70%" />
+<div align="center"><img src="Standard_NN.png" height="70%" width="70%" />
   <div class="image-caption">Standard NN</div>
   <img src="Convolutional_NN.png" height="70%" width="70%" />
   <div class="image-caption">Convolutional NN</div>
@@ -48,8 +47,7 @@ Here are some pictures of Standard NN, Convolutional NN, Recurrent NN:
 
 Neural Nework can deal with both stuctured data and unstructured data. The following will give you an intuition of both kinds of data.
 
-<div align="center">
-  <img src="Structured_and_Unstructured_Data.png" height="50%" width="50%" />
+<div align="center"><img src="Structured_and_Unstructured_Data.png" height="50%" width="50%" />
   <div class="image-caption">Structured and Unstructured Data</div>
 </div>
 
@@ -59,15 +57,13 @@ Here are some conclusions of why deep learning is advanced comparing to traditio
 
 Firstly, deep learning models performs better when dealing with big data. Here is a comparation of deep learning models and classic machine learing models:
 
-<div align="center">
-  <img src="Comparation_between_deep_learning_and_machine_learning.png" />
+<div align="center"><img src="Comparation_between_deep_learning_and_machine_learning.png" />
   <div class="image-caption">Comparation between deep learning and machine learning</div>
 </div>
 
 Secondly, thanks to the booming development of hardware and advanced algorithm, computing is much faster than before. Thus, we can implement our idea and know whether it works or not in short time. As a result, we can run the following circle much faster than we image.
 
-<div align="center">
-  <img src="Iteration_process.png" height="50%" width="50%" />
+<div align="center"><img src="Iteration_process.png" height="50%" width="50%" />
   <div class="image-caption">Iteration process</div>
 </div>
 
@@ -75,8 +71,7 @@ Secondly, thanks to the booming development of hardware and advanced algorithm, 
 
 These basic symbols will be used through out the whole specialization.
 
-<div align="center">
-  <img src="Standard_notations.png" />
+<div align="center"><img src="Standard_notations.png" />
   <div class="image-caption">Standard notations</div>
   <img src="Standard_representations.png" />
   <div class="image-caption">Standard representation</div>
@@ -84,8 +79,7 @@ These basic symbols will be used through out the whole specialization.
 
 Moreover, in this course, each input x will be stacked into columns and form the input matrix X.
 
-<div align="center">
-  <img src="Input_X.png" width="50%" height="50%" />
+<div align="center"><img src="Input_X.png" width="50%" height="50%" />
   <div class="image-caption">Input X</div>
   <img src="Output_y.png" width="50%" height="50%" />
   <div class="image-caption">Output y</div>
@@ -95,7 +89,26 @@ Moreover, in this course, each input x will be stacked into columns and form the
 
 Reviewing the whole course, there are several common concepts between logistic regression and neural network (including both shallow and deep neural network). Thus, I draw conclusions on each concept and then apply them to both logistic regression and neural network.
 
+## Relation among logistic regression and neural network
+
+First of all, here are pictures of logistic regression and neural network.
+
+![Logistic Regression](Logistic_Regression.png)
+![Neural Network](Neural_Network.png)
+
+As we can see, logistic regression is also a kind of neural network, which has input layer and output layer and does not have hidden layers. In the following sections, I will only write neural network to represent logistic regression and neural network and use pictures similar to the second one to represent neural network.
+
 ## Computation Graph
+
+Computation graph is one of basic concepts in deep learning. By analyzing it, we could understand the whole process of computation process of neural network. The following is the basic computation graph:
+
+<div align="center"><img src="Computation_Graph.png" width="80%" height="80%" /></div>
+
+In this picture, we can easily understand how $J(a,b,c)=3(a+bc)$ is computed. This process is similar to "Forward Propagation" process which I will say in next section. Moreover, in neural network, $J$ is called cost function. After computing cost function $J$, we need to feed it back to all of our parameters, such as $a$, $b$, $c$ in the picture. This process is called computing derivatives.
+
+<div align="center"><img src="Computing_Derivatives.png" width="80%" height="80%" /></div>
+
+By analyzing the comutation graph, we can easily compute all deviatives. According to chain rule, we can compute $\frac{dJ}{da}$ by $\frac{dJ}{dv}\frac{dv}{da}$. So do parameter $b$ and $c$. The whole derivation process is similar to "backward propagation" process in neural network.
 
 ## Forward Propagation
 
