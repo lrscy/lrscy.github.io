@@ -8,7 +8,11 @@ categories: [Deep Learning]
 
 This is a note of the first course of the "Deep Learning Specialization" at [Coursera](https://www.coursera.org/specializations/deep-learning). The course is taught by Andrew Ng.
 
-Almost all materials in this note come from courses' videos. The note combines knowledge from course and some of my understanding of these konwledge. Thus, it does not strictly follow the order of videos.
+Almost all materials in this note come from courses' videos. The note combines knowledge from course and some of my understanding of these konwledge. I've reorganized the structure of the whole course according to my understanding. Thus, it doesn't strictly follow the order of videos.
+
+If you want to read the notes which strictly follows the course, here are some recommendations:
+- [mbadry1's notes on Github](https://github.com/mbadry1/DeepLearning.ai-Summary)
+- [ppant's notes on Github](https://github.com/ppant/deeplearning.ai-notes)
 
 Some parts of this note are inspired from [Tess Ferrandez](https://www.slideshare.net/TessFerrandez/notes-from-coursera-deep-learning-courses-by-andrew-ng).
 
@@ -87,7 +91,24 @@ Moreover, in this course, each input x will be stacked into columns and form the
   <div class="image-caption">Output y</div>
 </div>
 
-# Basics of Neural Network (Logistic Regression)
+# Neural Network
+
+Reviewing the whole course, there are several common concepts between logistic regression and neural network (including both shallow and deep neural network). Thus, I draw conclusions on each concept and then apply them to both logistic regression and neural network.
+
+## Computation Graph
+
+## Forward Propagation
+
+## Backward Propagation
+
+## Activation Functions
+
+## Parameters and Hyperparameters
+
+## Comparation of shallow and deep neural network
+
+
+
 
 ## Basic equations
 
@@ -128,4 +149,6 @@ For this loss function:
 
 Then the cost function is: $$ J( w, b ) = \frac{1}{m}\sum_{i=1}^{m} L( \hat{y}, y ) $$
 
-To be continue...
+
+
+To be continued...
