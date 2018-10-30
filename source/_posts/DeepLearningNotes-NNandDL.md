@@ -1,5 +1,5 @@
 ---
-title: Deep Learning Notes - Neural Network and Deep Learning
+title: DeepLearning.ai Note - Neural Network and Deep Learning
 date: 2018-10-22 12:32:25
 tags: [Deep Learning, Coursera]
 categories: [Deep Learning]
@@ -10,7 +10,7 @@ This is a note of the first course of the "Deep Learning Specialization" at [Cou
 
 Almost all materials in this note come from courses' videos. The note combines knowledge from course and some of my understanding of these konwledge. I've reorganized the structure of the whole course according to my understanding. Thus, it doesn't strictly follow the order of videos.
 
-In this note, I will keep all function, equation vectorized (without for loop) as far as possible.
+In this note, I will keep all functions and equations vectorized (without for loop) as far as possible.
 
 If you want to read the notes which strictly follows the course, here are some recommendations:
 - [mbadry1's notes on Github](https://github.com/mbadry1/DeepLearning.ai-Summary)
@@ -126,8 +126,8 @@ By analyzing the comutation graph, we can easily compute all deviatives. Accordi
 For every single neuron, the computing process is the same as the logistic regression. Logistic regression is basically the combination of linear regression and logistic function such as sigmoid. It has one input layer, x, and one output layer, a or $ \hat{y} $.
 
 The linear regression equation is:&ensp;$ z = w^Tx+b $ 
-The sigmoid function equation is:&ensp;$ a = sigmoid( z ) $
-The combination euquation is:&emsp;&ensp;&nbsp;$ \hat{y} = a = sigmoid( w^Tx + b ) $
+The sigmoid function equation is:&ensp;$ a = \sigma( z ) $
+The combination euquation is:&emsp;&ensp;&nbsp;$ \hat{y} = a = \sigma( w^Tx + b ) $
 
 ### The whole process on Neural Network
 
@@ -135,21 +135,21 @@ The combination euquation is:&emsp;&ensp;&nbsp;$ \hat{y} = a = sigmoid( w^Tx + b
   <div class="image-caption">Forward Propagation</div>
 </div>
 
-This is an example of neural network. Since it only has one hidden layer, it's also called shallow neural network.
+This is an example of neural network. Since it only has one hidden layer, it's also called shallow neural network. The forward propagation process means that we compute the graph from left to the right in this picture.
 
 The whole process when computing the 1<sup>st</sup> layer (hidden layer) is as the following:
 
 \begin{align}
-Z^{[1]} & = W^TX + b \\\\
-A^{[1]} & = sigmoid( Z^{[1]} )
+Z^{[1]} & = W^{[1]T}X + b^{[1]} \\\\
+A^{[1]} & = \sigma( Z^{[1]} )
 \end{align}
 
-In these equations
-- $W^T$ is a 4x3 matrix. It is also written as $W^{[1]}$. Its shape is always (# of neurons in this layer)x(# of neurons in previous layer).
-- $X$ is a 3x1 matrix. Sometimes it is also called $A^{[0]}$.
-- $b$ is a 4x1 matrix. Its shape is always (# of neurous in this layer)x1.
-- $A^{[1]}$ is a 4x1 matrix. Its shape is always (# of neurous in this layer)x1.
-- sigmoid is an element-wise function.
+In these equations:
+- $W^{[1]T}$ is a $4 \times 3$ matrix. It is also written as $W^{[1]}$. Its shape is always (# of neurons in this layer)$\times$(# of neurons in previous layer).
+- $X$ is a $3 \times m$ matrix. Sometimes it is also called $A^{[0]}$.
+- $b^{[1]}$ is a $4 \times m$ matrix. Its shape is always (# of neurons in this layer)$\times m$.
+- $A^{[1]}$ is a $4 \times m$ matrix. Its shape is always (# of neurons in this layer)$\times m$.
+- $\sigma$ is an element-wise function. It is called activation function.
 
 For each layer, it just repeats what previous layers do until the last layer (output layer).
 
@@ -175,9 +175,43 @@ Then the cost function is: $$ J( w, b ) = \frac{1}{m}\sum_{i=1}^{m} L( \hat{y}, 
 
 ## Backward Propagation
 
+Here, we use gradient descent as our backward propagation method.
+
+### Compute Gradients
+
 <div align="center"><img src="Backward_Propagation_NN.png" width="90%" height="90%" />
   <div class="image-caption">Backward Propagation</div>
 </div>
+
+As we can see in the picture, it is a simplified computation graph. The neural network is on the right-top, which is almost the same as the neural network we discussing in previous section. Backward Propagation is computing derivatives from the right to the left. By following the backward process, we can get derivatives for all parameters, including $W^{[1]}$, $b^{[1]}$, $W^{[2]}$, $b^{[2]}$.
+
+Here I give a rough derivation example of computing gradients of parameter $W^{[1]}$.
+
+\begin{align}
+\frac{\partial L}{\partial Z^{[1]}} & = W^{[2]T}\frac{\partial L}{\partial Z^{[2]}} \cdot {\sigma}^{[1]\prime}(Z^{[1]}) \\\\
+\frac{dL}{dW^{[1]}} & = \frac{\partial L}{\partial Z^{[1]}}\frac{dZ^{[1]}}{dW^{[1]}} \\\\
+                    & = \frac{\partial L}{\partial Z^{[1]}}A^{[0]T} \\\\
+\frac{dL}{db^{[1]}} & = \frac{\partial L}{\partial Z^{[1]}}\frac{dZ^{[1]}}{db^{[1]}} \\\\
+                    & = \frac{\partial L}{\partial Z^{[1]}}
+\end{align}
+
+It is similar to compute parameters in other layers. In these equations:
+- $\frac{dL}{dW^{[1]}}$ has the same shape as $W^{[1]}$. So do other layers.
+- $\frac{dL}{db^{[1]}}$ has the same shape as $b^{[1]}$. So do other layers.
+- the $\cdot$ in first line is an element-wise product.
+
+### Update parameters
+
+After computing gradients, we can update our parameters quickly.
+
+For every parameters (Take layer1 as an example):
+
+\begin{align}
+W^{[1]} & = W^{[1]} - \alpha \frac{dL}{dW^{[1]}} \\\\
+b^{[1]} & = b^{[1]} - \alpha \frac{dL}{db^{[1]}}
+\end{align}
+
+In above equations, $\alpha$ is called learning rate, which we need to determine before training.
 
 ## Activation Functions
 
