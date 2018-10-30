@@ -145,10 +145,10 @@ A^{[1]} & = \sigma( Z^{[1]} )
 \end{align}
 
 In these equations:
-- $W^{[1]T}$ is a $4 \times 3$ matrix. It is also written as $W^{[1]}$. Its shape is always (# of neurons in this layer)$\times$(# of neurons in previous layer).
+- $W^{[1]T}$ is a $4 \times 3$ matrix. It is also written as $W^{[1]}$. Its shape is always $n^{[l]} \times n^{[l - 1]}$.
 - $X$ is a $3 \times m$ matrix. Sometimes it is also called $A^{[0]}$.
-- $b^{[1]}$ is a $4 \times m$ matrix. Its shape is always (# of neurons in this layer)$\times m$.
-- $A^{[1]}$ is a $4 \times m$ matrix. Its shape is always (# of neurons in this layer)$\times m$.
+- $b^{[1]}$ is a $4 \times m$ matrix. Its shape is always $n^{[l]} \times m$.
+- $A^{[1]}$ is a $4 \times m$ matrix. Its shape is always $n^{[l]} \times m$.
 - $\sigma$ is an element-wise function. It is called activation function.
 
 For each layer, it just repeats what previous layers do until the last layer (output layer).
