@@ -168,8 +168,8 @@ L( \hat{y}, y ) = -( y \cdot log(\hat{y}) + ( 1 - y ) \cdot log( 1 - \hat{y} ) )
 $$
 
 For this loss function:
-- if y == 1, then $ L = -y \cdot log(\hat{y}) $ and it will close to 0 when $ \hat{y} $ near 1.
-- if y == 0, then $ L = -( 1 - y ) \cdot log( 1 - \hat{y} ) $ and it will close to 0 when $ \hat{y} $ near 0.
+- if y = 1, then $ L = -y \cdot log(\hat{y}) $ and it will close to 0 when $ \hat{y} $ near 1.
+- if y = 0, then $ L = -( 1 - y ) \cdot log( 1 - \hat{y} ) $ and it will close to 0 when $ \hat{y} $ near 0.
 
 Then the cost function is: $$ J( w, b ) = \frac{1}{m}\sum_{i=1}^{m} L( \hat{y}, y ) $$
 
