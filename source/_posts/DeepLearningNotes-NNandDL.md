@@ -221,12 +221,12 @@ In previous sections, notation $\sigma$ is used to represent activation function
   <div class="image-caption">Activation Functions</div>
 </div>
 
-In the course, Prof. Andrew Ng only introduces the first four activation functions.
+In the course, Prof. Andrew Ng introduces the first four activation functions.
 
 Here are some experience on choosing those activation functions:
-- Sigmoid: It is usually used in output layer to generate results between 0 and 1 when doing binary classification. In other case, you should not use it.
-- Tanh: It always works better than sigmoid function since its value is between -1 and 1, so that neural network can learn more information by using it than using sigmoid function.
-- ReLU: The most commonly used activation function is ReLU function. If you don't want to use it, you can choose other ReLU derivatives, such as Leaky ReLU.
+- **Sigmoid**: It is usually used in output layer to generate results between 0 and 1 when doing binary classification. In other case, you should not use it.
+- **Tanh**: It always works better than sigmoid function since its value is between -1 and 1, so that neural network can learn more information by using it than using sigmoid function.
+- **ReLU**: The most commonly used activation function is ReLU function. If you don't want to use it, you can choose other ReLU derivatives, such as Leaky ReLU.
 
 ## Parameters and Hyperparameters
 
