@@ -8,7 +8,7 @@ categories: [LeetCode]
 
 # Code
 
-Solution of problem 146 is showed below. You can also find it [here](https://github.com/lrscy/LeetCode/blob/master/Algorithm/146-LRU%20Cache.cpp).
+Solution of [problem 146](https://leetcode.com/problems/lru-cache/) is showed below. You can also find it [here](https://github.com/lrscy/LeetCode/blob/master/Algorithm/146-LRU%20Cache.cpp).
 
 ```
 static const int _ = []() {

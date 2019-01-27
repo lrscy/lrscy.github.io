@@ -1,6 +1,6 @@
 ---
 title: LeetCode 159 Longest Substring with At Most Two Distinct Characters
-date: 2019 01 27 11:47:14
+date: 2019-01-27 11:47:14
 tags: [LeetCode, Solution]
 categories: [LeetCode]
 
@@ -8,7 +8,7 @@ categories: [LeetCode]
 
 # Code
 
-The solution of problem 159 is showed below. You can also find it [here](https://github.com/lrscy/LeetCode/blob/master/Algorithm/159-Longest%20Substring%20with%20At%20Most%20Two%20Distinct%20Characters.cpp).
+The solution of [problem 159](https://leetcode.com/problems/longest-substring-with-at-most-two-distinct-characters/) is showed below. You can also find it [here](https://github.com/lrscy/LeetCode/blob/master/Algorithm/159-Longest%20Substring%20with%20At%20Most%20Two%20Distinct%20Characters.cpp).
 
 ```
 class Solution {

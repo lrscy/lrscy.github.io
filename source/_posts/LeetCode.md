@@ -31,9 +31,9 @@ When solving problems on LeetCode, I found some problems are really interesting,
 
 - [146 LRU Cache](/2019/01/27/LeetCode-146-LRU-Cache)
 - [159 Longest Substring with At Most Two Distinct Characters](/2019/01/27/LeetCode-159-Longest-Substring-with-At-Most-Two-Distinct-Characters)
+- [200 Number of Islands](/2019/01/27/LeetCode-200-Number-of-Islands)
+- [843 Guess the word](/2019/01/27/LeetCode-843-Guess-the-word)
+- [982 Triples with Bitwise AND Equal To Zero](/2019/01/27/LeetCode-982-Triples-with-Bitwise-AND-Equal-To-Zero)
+- [984 String Without AAA or BBB](/2019/01/27/LeetCode-984-String-Without-AAA-or-BBB)
 
 To be uploaded:
-- 200 Number of Islands
-- 843 Guess the word
-- 982 Triples with Bitwise AND Equal To Zero
-- 984 String without AAA and BBB
