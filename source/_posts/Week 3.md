@@ -19,9 +19,14 @@ It can be formulized as $\pi(a|s)$, which is a probability distribution. Since i
 - $\sum_{a \in A(s)}\pi(a|s)=1$
 - $\pi(a|s) \ge 0$
 
+Notes:
+
+- A policy depends only on the ***current state***.
+- It is a restriction ***on the state*** rather than on the agent.
+
 ### Value Function
 
-***Value function*** is designed to evaluate expected return in the future in a given state.
+***Value function*** is designed to evaluate expected return in the future in a given state. It aggregates many possible future returns into a single number.
 
 #### State-value function
 
@@ -77,3 +82,50 @@ $$
 
 ## Optimal Policies and Optimal Value Functions
 
+An ***optimal policy*** is defined as the policy with the ***highest possible value function*** in ***all states***. There is at least one exist. It can be concatenated by best parts of multiple policies. Due to the exponential number of possible policies, brute-force searching is not impossible.
+
+We always use $\pi_*$ and $q_*$ to denote optimal state-value function and optimal action-value function respectively.
+
+### Bellman Optimal Equation for $v_*$
+
+$$
+v_* = v_{\pi_*}(s) \doteq \mathbb{E}_{\pi_*}[G_t|S_t=s] = \max_\pi v_\pi(s) \text{ for all }s \in S \\
+$$
+
+According to the formula $(6)$,
+$$
+v_*(s) = \sum_a\pi_*(a|s)\sum_{s'}\sum_rp(s',r|s,a)[r+\gamma v_*(s')]
+$$
+Since the optimal policy can be made of optimal action in every state, the $\pi_*$ would be 1 for the optimal action, achieve the highest value, and 0 for else, which means it becomes a deterministic optimal policy. Then, it becomes
+$$
+v_*(s) = \max_a \sum_{s'}\sum_{r}p(s',r|s,a)[r+\gamma v_*(s')]
+$$
+
+### Bellman Optimal Equation for $q_*$
+
+Similarly, we can do it on $q_*$.
+$$
+\begin{align}
+q_* = q_{\pi_*}(s,a) &\doteq \max_\pi q_\pi(s,a) \text{, for all } s \in S \text{ and } a \in A \\
+q_*(s,a) &= \sum_{s'}\sum_rp(s',r|s,a)[r+\gamma \sum_{a'}\pi_*(a'|s')q_*(s',a')] \\
+q_*(s,a) &= \sum_{s'}\sum_rp(s',r|s,a)[r+\gamma \max_a q_*(s',a')]
+\end{align}
+$$
+Notes:
+
+- Since $v_*$ and $q_*$ already take into account the reward consequence of all possible future behavior, the greedy method $\max$ here will finally lead the the final optimal result.
+- We cannot simply use linear system solver to solve the optimal $\pi_*$ because it is the thing we would like to solve.
+
+## Determine an Optimal Policy
+
+For $v_*(s)$,
+$$
+\begin{align}
+v_*(s) &= \max_a \sum_{s'}\sum_{r}p(s',r|s,a)[r+\gamma v_*(s')] \\
+\pi_*(s) &= \arg\max_a \sum_{s'}\sum_{r}p(s',r|s,a)[r+\gamma v_*(s')]
+\end{align}
+$$
+If we have $q_*(s,a)$, we can get $\pi_*(s)$ easier,
+$$
+\pi_*(s)=\arg\max_a q_*(s,a)
+$$
