@@ -92,13 +92,13 @@ $$
 - Bellman functions provides us a way to solve the value function by writing a system of linear equations.
 - It can be only directly used on small MDPs
 
-## Optimal Policies and Optimal Value Functions
+# Optimal Policies and Optimal Value Functions
 
 An ***optimal policy*** is defined as the policy with the ***highest possible value function*** in ***all states***. There is at least one exist. It can be concatenated by best parts of multiple policies. Due to the exponential number of possible policies, brute-force searching is not impossible.
 
 We always use $\pi\_\*$ and $q\_\*$ to denote optimal state-value function and optimal action-value function respectively.
 
-### Bellman Optimal Equation for $v\_\*$
+## Bellman Optimal Equation for $v\_\*$
 
 $$
 v\_\* = v\_{\pi\_\*}(s) \doteq \mathbb{E}\_{\pi\_\*}[G\_t|S\_t=s] = \max\_\pi v\_\pi(s) \text{ for all }s \in S \tag{5}
@@ -116,7 +116,7 @@ $$
 v\_\*(s) = \max\_a \sum\_{s'}\sum\_{r}p(s',r|s,a)[r+\gamma v\_\*(s')] \tag{7}
 $$
 
-### Bellman Optimal Equation for $q\_\*$
+## Bellman Optimal Equation for $q\_\*$
 
 Similarly, we can do it on $q\_\*$.
 $$
