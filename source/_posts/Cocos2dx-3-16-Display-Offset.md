@@ -4,6 +4,7 @@ title: Cocos2d-x v3.16 屏幕显示偏移
 date: 2018-01-26 20:28:36
 tags: [Cocos2d-x, Display Offset]
 categories: [Cocos2d-x]
+description: Cocos2d-x v3.16 屏幕显示偏移
 
 ---
 

@@ -3,6 +3,7 @@ title: LeetCode 984 String Without AAA or BBB
 date: 2019-01-27 15:18:19
 tags: [LeetCode, Solution]
 categories: [LeetCode]
+mathjax: true
 
 ---
 

@@ -3,8 +3,13 @@ title: Dynamic Programming
 date: 2020-03-24 01:06:45
 tags: [Coursera, Reinforcement Learning, Notes]
 categories: [Reinforcement Learning]
+mathjax: true
 
 ---
+
+**Fundamentals of Reinforcement Learning Week4 Notes**
+
+<!-- more -->
 
 # Policy Evaluation and Control
 

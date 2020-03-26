@@ -3,10 +3,13 @@ title: Finite Markov Decision Processes Notes
 date: 2020-03-03 00:12:59
 tags: [Coursera, Reinforcement Learning, Notes]
 categories: [Reinforcement Learning]
+mathjax: true
 
 ---
 
 **Fundamentals of Reinforcement Learning Week2 Notes**
+
+<!-- more -->
 
 MDPs are a classical formalization of sequential decision making, where actions influence not just immediate rewards, but also subsequent situations, or states, and through those future rewards. Thus MDPs involve delayed reward and the need to tradeoff immediate and delayed reward. Whereas in bandit problems we estimated the value $q\_\*(a)$ of each action $a$, in MDPs we estimate the value $q\_\*(s, a)$ of each action $a$ in each state $s$, or we estimate the value $v\_\*(s)$ of each state given optimal action selections.
 

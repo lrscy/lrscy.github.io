@@ -3,10 +3,13 @@ title: The K-Armed Bandit Problem Notes
 date: 2020-03-03 00:12:51
 tags: [Coursera, Reinforcement Learning, Notes]
 categories: [Reinforcement Learning]
+mathjax: true
 
 ---
 
 **Fundamentals of Reinforcement Learning Week1 Notes**
+
+<!-- more -->
 
 First of all, there are some notations need to be determined.
 

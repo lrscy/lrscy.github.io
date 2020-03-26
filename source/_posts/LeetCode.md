@@ -10,6 +10,8 @@ This blog is a summary of my solution of LeetCode problems. I will share several
 
 Most of my algorithm problem solutions are written in C++ and some of them are written in Python3. Most of my databse problem solutions are written in MySQL.
 
+<!-- more -->
+
 # Basic Acceleration
 
 Here is a way to reduce runtime when judging online with C++. Here is the code:

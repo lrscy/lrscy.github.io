@@ -15,6 +15,8 @@ categories: [Config]
 
 当前假设Ubuntu系统已经安装完成，目前直接进行CUDA8的安装。
 
+<!-- more -->
+
 # 基础准备
 
 ## 基础环境安装

@@ -139,10 +139,12 @@ This is an example of neural network. Since it only has one hidden layer, it's a
 
 The whole process when computing the 1<sup>st</sup> layer (hidden layer) is as the following:
 
+$$
 \begin{align}
 Z^{[1]} & = W^{[1]T}X + b^{[1]} \\\\
 A^{[1]} & = \sigma( Z^{[1]} )
 \end{align}
+$$
 
 In these equations:
 - $W^{[1]T}$ is a $4 \times 3$ matrix. It is also written as $W^{[1]}$. Its shape is always $n^{[l]} \times n^{[l - 1]}$.
@@ -171,7 +173,7 @@ For this loss function:
 - if y = 1, then $ L = -y \cdot log(\hat{y}) $ and it will close to 0 when $ \hat{y} $ near 1.
 - if y = 0, then $ L = -( 1 - y ) \cdot log( 1 - \hat{y} ) $ and it will close to 0 when $ \hat{y} $ near 0.
 
-Then the cost function is: $$ J( w, b ) = \frac{1}{m}\sum_{i=1}^{m} L( \hat{y}, y ) $$
+Then the cost function is: $$ J( w, b ) = \frac{1}{m}\sum\_{i=1}^{m} L( \hat{y}, y ) $$
 
 ## Backward Propagation
 
@@ -187,6 +189,7 @@ As we can see in the picture, it is a simplified computation graph. The neural n
 
 Here I give a rough derivation example of computing gradients of parameter $W^{[1]}$.
 
+$$
 \begin{align}
 \frac{\partial L}{\partial Z^{[1]}} & = W^{[2]T}\frac{\partial L}{\partial Z^{[2]}} \cdot {\sigma}^{[1]\prime}(Z^{[1]}) \\\\
 \frac{dL}{dW^{[1]}} & = \frac{\partial L}{\partial Z^{[1]}}\frac{dZ^{[1]}}{dW^{[1]}} \\\\
@@ -194,6 +197,7 @@ Here I give a rough derivation example of computing gradients of parameter $W^{[
 \frac{dL}{db^{[1]}} & = \frac{\partial L}{\partial Z^{[1]}}\frac{dZ^{[1]}}{db^{[1]}} \\\\
                     & = \frac{\partial L}{\partial Z^{[1]}}
 \end{align}
+$$
 
 It is similar to compute parameters in other layers. In these equations:
 - $\frac{dL}{dW^{[1]}}$ has the same shape as $W^{[1]}$. So do other layers.
@@ -206,10 +210,12 @@ After computing gradients, we can update our parameters quickly.
 
 For every parameters (Take layer1 as an example):
 
+$$
 \begin{align}
 W^{[1]} & = W^{[1]} - \alpha \frac{dL}{dW^{[1]}} \\\\
 b^{[1]} & = b^{[1]} - \alpha \frac{dL}{db^{[1]}}
 \end{align}
+$$
 
 In above equations, $\alpha$ is called learning rate, which we need to determine before training.
 

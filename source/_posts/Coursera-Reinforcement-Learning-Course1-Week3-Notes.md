@@ -3,10 +3,13 @@ title: Finite Markov Decision Processess Notes (Cont.)
 date: 2020-03-15 00:36:41
 tags: [Coursera, Reinforcement Learning, Notes]
 categories: [Reinforcement Learning]
+mathjax: true
 
 ---
 
 **Fundamentals of Reinforcement Learning Week3 Notes**
+
+<!-- more -->
 
 # Policies and Value Functions
 

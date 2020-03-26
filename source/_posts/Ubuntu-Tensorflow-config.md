@@ -15,6 +15,8 @@ TensorFlow安装环境为`Ubuntu 16.04.3 LTS`，GPU为`GT 750M`。
 
 如果有一定英语能力的同学最好请移步[官网](https://www.tensorflow.org/install/install_linux)进行下载安装，尽管可能需要下科学上网。
 
+<!-- more -->
+
 # 基础环境搭建
 
 本文采用Virtualenv环境进行搭建，这样能将TensorFlow运行于一个分离开的Python环境下，免得今后出错时对整个系统产生影响。

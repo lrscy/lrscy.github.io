@@ -11,11 +11,13 @@ categories: [NLP]
 
 翻译自[NVIDIA 深度学习系列](https://devblogs.nvidia.com/parallelforall/introduction-neural-machine-translation-with-gpus/)
 
-![](theano_logo_179x115.png)
+![](./Trans-Intro-to-NMT-with-GPUs-part1/theano_logo_179x115.png)
 
 「译者注：博文中有些链接指向Google Drive，需要各位同学科学上网查阅资料。」
 
 注意：这篇是Kyunghyun Cho写的神经网络机器翻译系列中的第一篇。其余的请见第二部分和第三部分。
+
+<!-- more -->
 
 神经网络机器翻译是近期被提出的的一个框架，其只基于神经网络。此篇文章是该系列的第一篇文章，我将阐述一个简单的编码-解码模型来构建一个神经网络机器翻译系统「[Cho et al., 2014](https://arxiv.org/abs/1406.1078); [Sutskever et al., 2014](http://arxiv.org/abs/1409.3215); [Kalchbrenner and Blunsom, 2013](https://scholar.google.com/citations?view_op=view_citation&hl=en&user=LFyg0tAAAAAJ&citation_for_view=LFyg0tAAAAAJ:d1gkVwhDpl0C)」。后面的文章我将阐述如何将注意力机制融入简单的编码-解码模型中「Bahdanau et al., 2015」，并且形成好的英法、英德、英土和英中翻译模型「[Gulcehre et al., 2015](http://arxiv.org/abs/1503.03535); [Jean et al., 2015](https://arxiv.org/abs/1412.2007)」。此外，我将介绍一些近期最新的进展——将此神经网络机器翻译框架应用于描述图像和视频的。
 
@@ -53,7 +55,7 @@ $$ \log p(y|x) \approx \log p(y|x, \theta) = \sum\_i \theta\_i f\_i(x, y) + C(\t
 
 在这种统计机器翻译方法中，通常来说机器学习需要做的只是寻找到一组能够平衡不同特征的系数θ\_i，或者从对数线性模型「[Schwenk, 2007](http://www.google.com/url?q=http%3A%2F%2Fwww.sciencedirect.com%2Fscience%2Farticle%2Fpii%2FS0885230806000325&sa=D&sntz=1&usg=AFQjCNGsoe0L0ioiBqvl9tmmFRVPNozyNQ)」中筛选或重新排序一组可能的翻译。更具体来所，神经网络已经被用作组成特征函数功能的一部分，也可以用来重新排序所谓的最佳可能翻译的列表，就像图2中中间和右边部分。
 
-![](smt_nmt-624x351.png)
+![](./Trans-Intro-to-NMT-with-GPUs-part1/smt_nmt-624x351.png)
 <div align=center>图2. 图解NMT，SMT+神经网络重新排序和SMT-NN。从「Bahadanau et al., 2015」在ICLR2015中的幻灯片中截取</div>
 
 另一方面，在此篇博客中，我将专注于最近提出一种称为神经网络机器翻译的方法。其中机器学习，特别是神经网络，拥有更多甚至全部的控制权。正如图2中左边部分所展示的。
@@ -78,7 +80,7 @@ $$ h\_t = \phi\_{\theta}(x\_t, h\_{t-1}) $$
 
 其中$\phi\_{\theta}$是由$\theta$参数化的一个函数，以新符号$x\_t$和保存了前$(t−1)$个符号的历史状态$h\_{t-1}$作为输入。最开始，我们可以放心的假设$h\_0$是一个全零向量。
 
-![](Figure_3-624x208.png)
+![](./Trans-Intro-to-NMT-with-GPUs-part1/Figure_3-624x208.png)
 <div align=center>图3. 图解不同类型的循环神经网络。摘自「[Pascanu et al., 2014](http://arxiv.org/abs/1312.6026)」</div>
 
 递归激活函数$\phi$通常被实现为一个非线性函数套着一个放射变换：
@@ -111,12 +113,12 @@ $$ p(x\_1, x\_2, \cdots, x{T})=p(x\_1)p(x\_2|x\_1)p(x\_3|x\_1, x\_2) \cdots p(x\
 
 上述改变基于条件概率公式，$p(X|Y)=\frac{P(X,Y)}{P(Y)}$。从上述改变我们可以看出，我们可以设计出一个递归表达式，例如：
 
-$$ p(x\_1)p(x\_2|x\_1)p(x\_3|x\_1, x\_2) \cdots p(x\_T|x\_1, \cdots, x\_{T-1}) = \prod\_{t=1}^{T}p(x\_t|x\_{<t}) $$
+$$ p(x\_1)p(x\_2|x\_1)p(x\_3|x\_1, x\_2) \cdots p(x\_T|x\_1, \cdots, x\_{T-1}) = \prod\_{t=1}^{T}p(x\_t|x\_{\<t}) $$
 
-现在我们使一个RNN模型$p(x\_t|x\_{<t})$在每一步t$时进行如下操作：
+现在我们使一个RNN模型$p(x\_t|x\_{\<t})$在每一步t$时进行如下操作：
 
 $$
-p(x\_t|x\_{<t}) = g\_{\theta}(h\_{t-1}) \\\
+p(x\_t|x\_{\<t}) = g\_{\theta}(h\_{t-1}) \\\
 h\_{t-1} = \phi\_{\theta}(x\_{t-1}, h\_{t-2})
 $$
 

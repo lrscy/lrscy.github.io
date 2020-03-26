@@ -3,10 +3,13 @@ title: 数据清洗工具及相关使用方法
 date: 2018-03-20 14:50:09
 tags: [NLP, NMT]
 categories: [NLP]
+mathjax: true
 
 ---
 
 最近跟着老师参加了CWMT评测任务，稍微整理下目前用到的数据清洗相关的工具及使用方法。本人目前操作全在Ubuntu16.04下进行。
+
+<!-- more -->
 
 # 中文分词工具ansj
 

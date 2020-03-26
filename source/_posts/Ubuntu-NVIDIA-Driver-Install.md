@@ -15,6 +15,8 @@ categories: [Config]
 
 如果要在本机安装NVIDIA Driver的话请先用手机等设备照下关键步骤然后再执行。
 
+<!-- more -->
+
 # 安装准备
 
 ## 查找合适的驱动
@@ -77,7 +79,7 @@ $ nvidia-settings
 ```
 输入`nvidia-smi`命令后输出一个表格即为正常。
 输入`nvidia-settings`出现下图即为正常。
-![NVIDIA-X-Server-Settings](NVIDIA-X-Server-Settings.png)
+![NVIDIA-X-Server-Settings](./Ubuntu-NVIDIA-Driver-Install/NVIDIA-X-Server-Settings.png)
 
 # 异常处理
 

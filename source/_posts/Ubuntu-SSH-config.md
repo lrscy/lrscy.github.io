@@ -13,6 +13,8 @@ categories: [Config]
 本文是在Ubuntu 16.04 LTS下配置的，如果使用其他操作系统请自行查找对应命令或解决方案。
 以下代码区域，带有`$`打头的表示需要在控制台（终端或称命令行）下面执行（不包括`$`符号）
 
+<!-- more -->
+
 # SSH安装
 
 Ubuntu 16.04 LTS自带openssh客户端，但是不带openssh服务器端。如果需要`ssh localhost`连接本地，那么需要安装`openssh-server`，命令如下：

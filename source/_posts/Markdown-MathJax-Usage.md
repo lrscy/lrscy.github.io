@@ -4,6 +4,7 @@ title: Markdown中MathJax的用法
 date: 2018-01-26 09:25:33
 tags: [Markdown, MathJax]
 categories: [Usage]
+mathjax: true
 
 ---
 

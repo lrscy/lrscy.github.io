@@ -4,10 +4,13 @@ title: Dialog Response Prediction Related Paper Read
 date: 2019-02-11 20:40:58
 tags: [NLP, DeepLearning]
 categories: [NLP]
+mathjax: true
 
 ---
 
 Multi-turn Question-Answering/Chatbot problems are one of the hottest topics in NLP field recently. The blog sum up some tradition papers and several recent papers.
+
+<!-- more -->
 
 # [Multi-view Response Selection for Human-Computer Conversation](https://www.aclweb.org/anthology/D16-1036)
 
