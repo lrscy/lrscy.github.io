@@ -2,7 +2,7 @@
 title: LeetCode 476 Number Complement
 date: 2020-05-04 11:39:08
 tags: [LeetCode, Solution]
-categories: [Leetcode]
+categories: [LeetCode]
 
 ---
 
