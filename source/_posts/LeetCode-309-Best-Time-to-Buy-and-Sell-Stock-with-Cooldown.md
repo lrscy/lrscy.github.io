@@ -1,5 +1,5 @@
 ---
-title: LeetCode 146 LRU Cache
+title: LeetCode 309 Best Time to Buy and Sell Stock with Cooldown
 date: 2019-01-27 10:52:23
 tags: [LeetCode, Solution]
 categories: [LeetCode]

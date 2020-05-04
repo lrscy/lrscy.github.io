@@ -1,5 +1,5 @@
 ---
-title: LeetCode 146 LRU Cache
+title: LeetCode 416 Partition Equal Subset Sum
 date: 2019-01-27 10:52:23
 tags: [LeetCode, Solution]
 categories: [LeetCode]
