@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.2.0">
+<meta name="generator" content="Hexo 4.2.1">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -34,7 +34,7 @@
 <meta property="og:image" content="https://lrscy.github.io/2017/04/29/Trans-Intro-to-NMT-with-GPUs-part1/smt_nmt-624x351.png">
 <meta property="og:image" content="https://lrscy.github.io/2017/04/29/Trans-Intro-to-NMT-with-GPUs-part1/Figure_3-624x208.png">
 <meta property="article:published_time" content="2017-04-29T04:00:00.000Z">
-<meta property="article:modified_time" content="2020-07-09T08:05:39.935Z">
+<meta property="article:modified_time" content="2020-07-09T08:11:49.693Z">
 <meta property="article:author" content="Ruosen Li">
 <meta property="article:tag" content="NLP">
 <meta property="article:tag" content="NMT">
@@ -322,7 +322,7 @@ mjx-container + br {
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-07-09 04:05:39" itemprop="dateModified" datetime="2020-07-09T04:05:39-04:00">2020-07-09</time>
+                <time title="Modified: 2020-07-09 04:11:49" itemprop="dateModified" datetime="2020-07-09T04:11:49-04:00">2020-07-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -368,7 +368,7 @@ mjx-container + br {
       
         <p>原文名：<a href="https://devblogs.nvidia.com/parallelforall/introduction-neural-machine-translation-with-gpus/" target="_blank" rel="noopener">Introduction to Neural Machine Translation with GPUs (part 1)</a></p>
 <p>翻译自<a href="https://devblogs.nvidia.com/parallelforall/introduction-neural-machine-translation-with-gpus/" target="_blank" rel="noopener">NVIDIA 深度学习系列</a></p>
-<p><img src="/2017/04/29/Trans-Intro-to-NMT-with-GPUs-part1/theano_logo_179x115.png" alt=""></p>
+<p><img src="/2017/04/29/Trans-Intro-to-NMT-with-GPUs-part1/theano_logo_179x115.png" alt></p>
 <p>「译者注：博文中有些链接指向Google Drive，需要各位同学科学上网查阅资料。」</p>
 <p>注意：这篇是Kyunghyun Cho写的神经网络机器翻译系列中的第一篇。其余的请见第二部分和第三部分。</p>
 <a id="more"></a>
@@ -376,7 +376,7 @@ mjx-container + br {
 <h1 id="统计机器翻译"><a href="#统计机器翻译" class="headerlink" title="统计机器翻译"></a>统计机器翻译</h1><p>首先，我们简单的阐述下机器翻译。事实上，机器翻译是个统称。我们希望机器将一种语言（我们称之为源语言）翻译成另一种语言（我们称之为目标语言）。（尽管理想情况下，机器应该能够将一整篇文档从一种语言翻译到另一种语言，但是我们在此篇博客中专注于句子级别的机器翻译。）</p>
 <p>我们有许多方式去构建一台能够翻译语言的机器。例如，我们可以请教一个同时会两门语言的的人为我们构建一套翻译规则来将源语言正确的翻译成目标语言。但是这不是一个好的解决方案，联想下我们自己，我们可能都无法完整的构建出我们母语的语法规则，更别提构建两个语言规则之间的对应了。写一套详尽的翻译规则将源语言翻译成目标语言更是痴心妄想。因此，在此篇博文中，我们将专注于利用统计的方法，通过大量的文本语料库来提取这些隐式和显式的规则。</p>
 <p>这种通过统计方法进行机器翻译的方法被成为统计机器翻译。虽然最终目标是相同的（建立一个能将一个句子从一种语言翻译到另一种语言的机器），但是我们让机器从数据中学习如何翻译而非学习如何构建规则（如图1的图解）。此学习是基于统计的方法，每个学习过机器学习的人都应该很熟悉此方法。事实上，统计机器翻译只是机器学习的一种特定的应用——寻找一种从源语言到相关目标语言的对应关系。</p>
-<p><img src="/2017/04/29/Trans-Intro-to-NMT-with-GPUs-part1/Figure_1-624x224.png" alt=""></p>
+<p><img src="/2017/04/29/Trans-Intro-to-NMT-with-GPUs-part1/Figure_1-624x224.png" alt></p>
 <div align="center">图1. 统计机器翻译</div>
 
 <p>机器翻译的一个重要的特征是翻译函数并非像其他机器学习应用一样是一对一的或多对一的（例如分类应用的函数就是多对一的），而是一对多的，也就是说一个源句子可能有多个可能的翻译结果。正因如此，模型的方法不是个确定性函数而是一个目标句子$y$对$x$的条件概率$p(y|x)$。条件概率能够对于多个分离度良好的结构或句子分配同等的高概率，这就使得源语言和目标语言的一对多关系得以成立。</p>
@@ -390,7 +390,7 @@ mjx-container + br {
 <p>$$ \log p(y|x) \approx \log p(y|x, \theta) = \sum_i \theta_i f_i(x, y) + C(\theta), $$</p>
 <p>其中$C$是归一化常数。在这种情况下，很大一部分研究工作是要找到一组很好的特征函数f_i，并且有一本书已经详尽描述了关于其的所有细节「<a href="http://www.statmt.org/book/" target="_blank" rel="noopener">Koehn</a>」。</p>
 <p>在这种统计机器翻译方法中，通常来说机器学习需要做的只是寻找到一组能够平衡不同特征的系数θ_i，或者从对数线性模型「<a href="http://www.google.com/url?q=http%3A%2F%2Fwww.sciencedirect.com%2Fscience%2Farticle%2Fpii%2FS0885230806000325&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNGsoe0L0ioiBqvl9tmmFRVPNozyNQ" target="_blank" rel="noopener">Schwenk, 2007</a>」中筛选或重新排序一组可能的翻译。更具体来所，神经网络已经被用作组成特征函数功能的一部分，也可以用来重新排序所谓的最佳可能翻译的列表，就像图2中中间和右边部分。</p>
-<p><img src="/2017/04/29/Trans-Intro-to-NMT-with-GPUs-part1/smt_nmt-624x351.png" alt=""></p>
+<p><img src="/2017/04/29/Trans-Intro-to-NMT-with-GPUs-part1/smt_nmt-624x351.png" alt></p>
 <div align="center">图2. 图解NMT，SMT+神经网络重新排序和SMT-NN。从「Bahadanau et al., 2015」在ICLR2015中的幻灯片中截取</div>
 
 <p>另一方面，在此篇博客中，我将专注于最近提出一种称为神经网络机器翻译的方法。其中机器学习，特别是神经网络，拥有更多甚至全部的控制权。正如图2中左边部分所展示的。</p>
@@ -402,7 +402,7 @@ mjx-container + br {
 <p>我接下来将更详细的解释一下RNN。RNN的主要的思想是通过使用递归将输入的序列压缩成一个固定维度的向量。假设在第$t$步我们有一个向量$h_{t-1}$保存了之前所有的符号的状态。RNN将计算出一个新的向量（或称为内部状态），$h_t$通过下式压缩了之前所有符号$\left(x_1, x_2, \dots, x_{t-1} \right)$包括新的符号$x_t$：</p>
 <p>$$ h_t = \phi_{\theta}(x_t, h_{t-1}) $$</p>
 <p>其中$\phi_{\theta}$是由$\theta$参数化的一个函数，以新符号$x_t$和保存了前$(t−1)$个符号的历史状态$h_{t-1}$作为输入。最开始，我们可以放心的假设$h_0$是一个全零向量。</p>
-<p><img src="/2017/04/29/Trans-Intro-to-NMT-with-GPUs-part1/Figure_3-624x208.png" alt=""></p>
+<p><img src="/2017/04/29/Trans-Intro-to-NMT-with-GPUs-part1/Figure_3-624x208.png" alt></p>
 <div align="center">图3. 图解不同类型的循环神经网络。摘自「<a href="http://arxiv.org/abs/1312.6026" target="_blank" rel="noopener">Pascanu et al., 2014</a>」</div>
 
 <p>递归激活函数$\phi$通常被实现为一个非线性函数套着一个放射变换：</p>
@@ -610,7 +610,7 @@ mjx-container + br {
   </span>
   <span class="author" itemprop="copyrightHolder">Ruosen Li</span>
 </div>
-  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.2.0
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.2.1
   </div>
   <span class="post-meta-divider">|</span>
   <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.7.2
