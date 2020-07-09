@@ -50,7 +50,7 @@ Obviously, in reality, we cannot gather infinite episodes from the interaction w
 
 ## Monte Carlo Control
 
-Here, we retain the assumption of exploring starts. The overall idea is to apply the [**generalized policy iteration (GPI)**](/2020/03/24/Coursera-Reinforcement-Learning-Course1-Week4-Notes/#Generalized Policy Iteration). We perform alternating complete steps of policy evaluation and policy improvement, **beginning** with an **arbitrary policy** $\pi\_0$ and ending with the optimal policy and optimal action-value function. We <u>assume</u> that we do indeed observe an infinite number of episodes and the episodes are generated with exploring starts.
+Here, we retain the assumption of exploring starts. The overall idea is to apply the [**generalized policy iteration (GPI)**](/2020/03/24/Coursera-Reinforcement-Learning-Course1-Week4-Notes/#Generalized-Policy-Iteration). We perform alternating complete steps of policy evaluation and policy improvement, **beginning** with an **arbitrary policy** $\pi\_0$ and ending with the optimal policy and optimal action-value function. We <u>assume</u> that we do indeed observe an infinite number of episodes and the episodes are generated with exploring starts.
 
 Policy improvement is done by **making the policy greedy with respect to the current value function**. In this case we have an action-value function, and therefore **no model is needed to construct the greedy policy**. The policy will be deterministically chose with maximal action-value:
 
@@ -58,7 +58,7 @@ $$
 \pi(s) \doteq \arg \max\_a q(s,a)
 $$
 
-The policy improvement can be proved by the [policy improvement theorem](/2020/03/24/Coursera-Reinforcement-Learning-Course1-Week4-Notes/):
+The policy improvement can be proved by the [policy improvement theorem](/2020/03/24/Coursera-Reinforcement-Learning-Course1-Week4-Notes/#Policy-Control):
 
 $$
 \begin{align}
@@ -102,9 +102,7 @@ That any $\epsilon-greedy$ policy with respect to $q\_\pi$ is an improvement ove
 
 Off-policy control methods has two policies on the same episode. One that is **learned about and that becomes the optimal policy**, called **target policy**, and one that is **more exploratory and is used to generate behavior**, called the **behavior policy**. In this case we say that **learning is from data “off” the target policy**, and the overall process is termed off-policy learning.
 
-Here, we only consider the [prediction problem](/2020/03/24/Coursera-Reinforcement-Learning-Course1-Week4-Notes/), in which both target and behavior policies are fixed. We require that
-$\pi(a|s)>0$ implies $b(a|s)>0$, which is called the **assumption of coverage**, to assure that every action taken under $\pi$ is also taken under $b$. It follows from coverage that **$b$ must be stochastic in states** where it is not identical to $\pi$. The
-target policy **$\pi$ may be deterministic**.
+Here, we only consider the [prediction problem](/2020/03/24/Coursera-Reinforcement-Learning-Course1-Week4-Notes/#Policy-Evaluation-and-Control), in which both target and behavior policies are fixed. We require that $\pi(a|s)>0$ implies $b(a|s)>0$, which is called the **assumption of coverage**, to assure that every action taken under $\pi$ is also taken under $b$. It follows from coverage that **$b$ must be stochastic in states** where it is not identical to $\pi$. The target policy **$\pi$ may be deterministic**.
 
 #### Importance sampling
 
@@ -112,7 +110,7 @@ Almost all off-policy methods utilize **importance sampling**, a general techniq
 $$
 Pr\{A\_t, S\_{t+1}, A\_{t+1}, \cdots, S\_T|S\_t, A\_{t:T-1} \sim \pi\}=\prod\_{k=t}^{T-1}\pi(A\_k|S\_k)p(S\_{k+1}|S\_k, A\_k)
 $$
-where $p$ is the [state-transition probability function](/2020/03/03/Coursera-Reinforcement-Learning-Course1-Week2-Notes/). Thus, the relative probability of the trajectory under the target and behavior policies is:
+where $p$ is the [state-transition probability function](/2020/03/03/Coursera-Reinforcement-Learning-Course1-Week2-Notes/#Common-Used-Formulas). Thus, the relative probability of the trajectory under the target and behavior policies is:
 $$
 \rho\_{t:T-1} \doteq \frac{\prod\_{k=t}^{T-1}\pi(A\_k|S\_k)p(S\_{k+1}|S\_k, A\_k)}{\prod\_{k=t}^{T-1}b(A\_k|S\_k)p(S\_{k+1}|S\_k, A\_k)}=\frac{\pi(A\_k|S\_k)}{b(A\_k|S\_k)}
 $$
@@ -162,7 +160,7 @@ The **every-visit methods** for ordinary and weighed importance sampling are **b
 
 ### Incremental Implementation
 
-For the **on-policy** method, just like it mentioned [here](/2020/03/03/Coursera-Reinforcement-Learning-Course1-Week1-Notes/), we **average returns rather than rewards**.
+For the **on-policy** method, just like it mentioned [here](/2020/03/03/Coursera-Reinforcement-Learning-Course1-Week1-Notes/#Incremental-Implementation), we **average returns rather than rewards**.
 
 For the **off-policy** method, in **ordinary importance sampling**, the returns are scaled by the importance sampling ratio $\rho\_{t:T(t)-1}$ and all other parts are the same as on-policy method.
 
