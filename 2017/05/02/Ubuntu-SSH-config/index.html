@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"lrscy.github.io","root":"/","scheme":"Gemini","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":"flat"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="前沿本文记录了我配置同机多SSH时候的全过程。本文是在Ubuntu 16.04 LTS下配置的，如果使用其他操作系统请自行查找对应命令或解决方案。以下代码区域，带有$打头的表示需要在控制台（终端或称命令行）下面执行（不包括$符号）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ubuntu 16.04下(多)SSH配置">
+<meta property="og:url" content="https://lrscy.github.io/2017/05/02/Ubuntu-SSH-config/index.html">
+<meta property="og:site_name" content="Meow">
+<meta property="og:description" content="前沿本文记录了我配置同机多SSH时候的全过程。本文是在Ubuntu 16.04 LTS下配置的，如果使用其他操作系统请自行查找对应命令或解决方案。以下代码区域，带有$打头的表示需要在控制台（终端或称命令行）下面执行（不包括$符号）">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2017-05-02T04:00:00.000Z">
+<meta property="article:modified_time" content="2020-07-09T08:05:39.935Z">
+<meta property="article:author" content="Ruosen Li">
+<meta property="article:tag" content="Ubuntu">
+<meta property="article:tag" content="SSH">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://lrscy.github.io/2017/05/02/Ubuntu-SSH-config/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true
+  };
+</script>
+
+  <title>Ubuntu 16.04下(多)SSH配置 | Meow</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"] > svg a {
+  fill: blue;
+  stroke: blue;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container {
+  overflow: auto hidden;
+}
+
+mjx-container + br {
+  display: none;
+}
+</style></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Meow</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-links">
+
+    <a href="/links/" rel="section"><i class="fa fa-fw fa-link"></i>links</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+  <a href="https://github.com/lrscy" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
+    <link itemprop="mainEntityOfPage" href="https://lrscy.github.io/2017/05/02/Ubuntu-SSH-config/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ruosen Li">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Meow">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          Ubuntu 16.04下(多)SSH配置
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2017-05-02 00:00:00" itemprop="dateCreated datePublished" datetime="2017-05-02T00:00:00-04:00">2017-05-02</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-07-09 04:05:39" itemprop="dateModified" datetime="2020-07-09T04:05:39-04:00">2020-07-09</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Config/" itemprop="url" rel="index"><span itemprop="name">Config</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2017/05/02/Ubuntu-SSH-config/" class="post-meta-item leancloud_visitors" data-flag-title="Ubuntu 16.04下(多)SSH配置" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2017/05/02/Ubuntu-SSH-config/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2017/05/02/Ubuntu-SSH-config/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="前沿"><a href="#前沿" class="headerlink" title="前沿"></a>前沿</h1><p>本文记录了我配置同机多SSH时候的全过程。<br>本文是在Ubuntu 16.04 LTS下配置的，如果使用其他操作系统请自行查找对应命令或解决方案。<br>以下代码区域，带有<code>$</code>打头的表示需要在控制台（终端或称命令行）下面执行（不包括<code>$</code>符号）</p>
+<a id="more"></a>
+<h1 id="SSH安装"><a href="#SSH安装" class="headerlink" title="SSH安装"></a>SSH安装</h1><p>Ubuntu 16.04 LTS自带openssh客户端，但是不带openssh服务器端。如果需要<code>ssh localhost</code>连接本地，那么需要安装<code>openssh-server</code>，命令如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt install openssh-server</span><br></pre></td></tr></table></figure><br>如果你的机器上没有装客户端的话需要执行以下命令安装：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt install openssh-client</span><br></pre></td></tr></table></figure><br>至此，基础环境已经安装完了。</p>
+<h1 id="单SSH配置"><a href="#单SSH配置" class="headerlink" title="单SSH配置"></a>单SSH配置</h1><p>此节操作只适用于只需要免密码登录一个远程服务器的同学，如果你需要同时SSH远程登录多个服务器，那么请直接跳至下一节。</p>
+<p>对于单SSH配置，你只需要输入以下命令即可，此时为默认状态，你的个人信息不会被加入进去：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh-keygen -t rsa</span><br></pre></td></tr></table></figure><br>如果你需要将个人信息（如邮箱）加入进去（比如远程访问Github时），那么请执行如下命令：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh-keygen -t rsa -C <span class="string">"youraddress@youremail.com"</span></span><br></pre></td></tr></table></figure><br>这里有几点需要注意的：</p>
+<ol>
+<li><code>-C</code>中的C是大写字母</li>
+<li><code>youraddress@youremail.com</code>是你Github的注册邮箱</li>
+</ol>
+<p>对于上述两条命令，如果你远程登录时候需要设置密码，那么请在其提示时候输入密码。然后一路回车即可。 然后你会发现在你的家目录（<code>~</code>或者<code>/home/username/</code>）下多了一个叫做<code>.ssh</code>的文件夹，里面有两个文件<code>id_rsa</code>和<code>id_rsa.pub</code>。这两个就是SSH生成的文件，你需要将公钥传给远程服务器（Github相关问题详见<a href="/2017/05/01/Ubuntu-Github-config">Ubuntu16.04下Github配置</a>博文），然后就可以免密码远程登录了。</p>
+<h1 id="多SSH配置"><a href="#多SSH配置" class="headerlink" title="多SSH配置"></a>多SSH配置</h1><h2 id="建立不同的SSH配置文件"><a href="#建立不同的SSH配置文件" class="headerlink" title="建立不同的SSH配置文件"></a>建立不同的SSH配置文件</h2><p>首先你需要在家目录（<code>~</code>或者<code>/home/username/</code>）下建立一个<code>.ssh</code>文件夹，命令如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ mkdir .ssh</span><br></pre></td></tr></table></figure><br>然后进入该文件夹（建议进入）：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> ~/.ssh</span><br></pre></td></tr></table></figure><br>在该文件夹下，输入以下命令，后面我会介绍每个参数的作用：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh-keygen -t rsa -f ~/.ssh/id_rsa.blabla</span><br></pre></td></tr></table></figure><br>如果你需要将个人信息（如邮箱）加入进去（比如远程访问Github时），那么请执行如下命令：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh-keygen -t rsa -f ~/.ssh/id_rsa.blabla -C <span class="string">"youraddress@youremail.com"</span></span><br></pre></td></tr></table></figure><br>下面我们来分析下这两个命令。</p>
+<ol>
+<li><code>-t</code> <code>rsa</code>是指定你的加密算法。</li>
+<li><code>-f</code>是指定你的文件存储位置，我建议存在<code>~/.ssh</code>文件夹中。文件明明我建议按照我的格式写，<code>blabla</code>是该SSH配置文件的用途，比如<code>.github</code>, <code>.localhost</code>之类的。</li>
+<li><code>-C</code>注意这里C是大写字母。这里填写你的邮箱地址（顺便提一句配置Github时一定要填写你的注册邮箱，详见<a href="/2017/05/01/Ubuntu-Github-config">Ubuntu16.04下Github配置</a>）。</li>
+</ol>
+<h2 id="建立索引"><a href="#建立索引" class="headerlink" title="建立索引"></a>建立索引</h2><p>因为你有多对SSH配置文件（<code>.blabla</code>和<code>.blabla.pub</code>是一对私钥和公钥），所以在远程登陆时，系统需要知道你需要将哪份私钥和远程的公钥进行匹配。所以你需要一个索引文件<code>config</code>。输入如下命令建立该文件：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ touch config</span><br></pre></td></tr></table></figure><br>文件格式如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Host name</span><br><span class="line">    HostName hostname</span><br><span class="line">    User username</span><br><span class="line">    IdentityFile filepath</span><br></pre></td></tr></table></figure><br>一个config文件中可以有多个上述结构，每个结构之间建议用一个空行隔开。下面解析下这个结构。</p>
+<ol>
+<li><code>Host</code>就是个名字，每个结构之间不得重复</li>
+<li><code>HostName</code>是远程主机的域名，比如github.com, localhost之类或者是一个固定的IP地址。</li>
+<li><code>User</code>就是你登录该远程主机的用户名。</li>
+<li><code>IdentityFile</code>就是对应该主机的私钥的文件路径。依上述教程，应为<code>~/.ssh/id_rsa.blabla</code>。</li>
+</ol>
+<h1 id="登录localhost"><a href="#登录localhost" class="headerlink" title="登录localhost"></a>登录localhost</h1><p>在配置软件环境时，有软件需要免密码登录<code>localhost</code>，也就是免密码登录本机。此时，你需要在<code>.ssh</code>目录下建立<code>authorized_keys</code>文件，命令如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ touch authorized_keys</span><br></pre></td></tr></table></figure><br>建立此文件的目的是存储已知的SSH公钥信息。此时你需要将localhost的公钥复制进来。<br>如果你是单SSH配置，则需要把<code>id_rsa.pub</code>文件复制进来。命令如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ cat id_rsa.pub &gt;&gt; authorized_keys</span><br></pre></td></tr></table></figure><br>如果你是多SSH配置，依上述教程，你需要把<code>id_rsa.localhost.pub</code>复制进来，命令如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ cat id_rsa.localhost.pub &gt;&gt; authorized_keys</span><br></pre></td></tr></table></figure><br>然后你就可以免密码登录localhost了。另外，如果需要添加其他已知SSH公钥的话，直接往<code>authorized_keys</code>中添加即可。</p>
+<h1 id="常见提示及应对方法"><a href="#常见提示及应对方法" class="headerlink" title="常见提示及应对方法"></a>常见提示及应对方法</h1><h2 id="第一次登录"><a href="#第一次登录" class="headerlink" title="第一次登录"></a>第一次登录</h2><p>第一次远程登录一个新的主机时一般会出现如下提示：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">The authenticity of host <span class="string">'xxx.com (xx.xx.xx.xx)'</span> can<span class="string">'t be established.</span></span><br><span class="line"><span class="string">RSA key fingerprint is xx:xx...xx:xx.</span></span><br><span class="line"><span class="string">Are you sure you want to continue connecting (yes/no)?</span></span><br></pre></td></tr></table></figure><br>输入yes即可。然后可能会出现如下警告，意味着要永久存储该机器的特征信息，不用理睬即可：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Warning: Permanently added ‘xxx.com,xx.xx.xx.xx’ (RSA) to the list of known hosts.</span><br></pre></td></tr></table></figure></p>
+<h2 id="known-hosts文件"><a href="#known-hosts文件" class="headerlink" title="known_hosts文件"></a>known_hosts文件</h2><p>当你访问远程主机时，系统会记录远程主机的特征信息，这些信息都存储在<code>known_hosts</code>里面。如果你不小心删掉了的话，也没什么事请，就是下一次进行SSH链接时还会出现第一次登录的提示，按照提示输入yes即可。</p>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>Post author:  </strong>Ruosen Li
+  </li>
+  <li class="post-copyright-link">
+    <strong>Post link: </strong>
+    <a href="https://lrscy.github.io/2017/05/02/Ubuntu-SSH-config/" title="Ubuntu 16.04下(多)SSH配置">https://lrscy.github.io/2017/05/02/Ubuntu-SSH-config/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/en" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Ubuntu/" rel="tag"># Ubuntu</a>
+              <a href="/tags/SSH/" rel="tag"># SSH</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2017/05/01/Ubuntu-Github-config/" rel="prev" title="Ubuntu 16.04下Github配置">
+      <i class="fa fa-chevron-left"></i> Ubuntu 16.04下Github配置
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2017/10/10/Ubuntu-NVIDIA-Driver-Install/" rel="next" title="Ubuntu系统NVIDIA显卡驱动安装">
+      Ubuntu系统NVIDIA显卡驱动安装 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前沿"><span class="nav-number">1.</span> <span class="nav-text">前沿</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SSH安装"><span class="nav-number">2.</span> <span class="nav-text">SSH安装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#单SSH配置"><span class="nav-number">3.</span> <span class="nav-text">单SSH配置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#多SSH配置"><span class="nav-number">4.</span> <span class="nav-text">多SSH配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#建立不同的SSH配置文件"><span class="nav-number">4.1.</span> <span class="nav-text">建立不同的SSH配置文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#建立索引"><span class="nav-number">4.2.</span> <span class="nav-text">建立索引</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#登录localhost"><span class="nav-number">5.</span> <span class="nav-text">登录localhost</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#常见提示及应对方法"><span class="nav-number">6.</span> <span class="nav-text">常见提示及应对方法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#第一次登录"><span class="nav-number">6.1.</span> <span class="nav-text">第一次登录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#known-hosts文件"><span class="nav-number">6.2.</span> <span class="nav-text">known_hosts文件</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Ruosen Li</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">37</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">30</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/lrscy" title="GitHub → https://github.com/lrscy" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:ruosenlee@gmail.com" title="E-Mail → mailto:ruosenlee@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/en" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ruosen Li</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.7.2
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : true,
+      notify     : false,
+      appId      : 'flgn5yN4nyhhyKPBimaT89Q8-gzGzoHsz',
+      appKey     : '4yw3zmlMB7KjyFIzwIlYUnKz',
+      placeholder: "Just go go",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : true,
+      lang       : 'en, zh-cn' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : true,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>

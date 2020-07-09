@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"lrscy.github.io","root":"/","scheme":"Gemini","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":"flat"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="This is a note of the first course of the “Deep Learning Specialization” at Coursera. The course is taught by Andrew Ng. Almost all materials in this note come from courses’ videos. The note combines">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DeepLearning.ai Note - Neural Network and Deep Learning">
+<meta property="og:url" content="https://lrscy.github.io/2018/10/22/DeepLearningNotes-NNandDL/index.html">
+<meta property="og:site_name" content="Meow">
+<meta property="og:description" content="This is a note of the first course of the “Deep Learning Specialization” at Coursera. The course is taught by Andrew Ng. Almost all materials in this note come from courses’ videos. The note combines">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://lrscy.github.io/2018/10/22/DeepLearningNotes-NNandDL/Standard_NN.png">
+<meta property="og:image" content="https://lrscy.github.io/2018/10/22/DeepLearningNotes-NNandDL/Convolutional_NN.png">
+<meta property="og:image" content="https://lrscy.github.io/2018/10/22/DeepLearningNotes-NNandDL/Recurrent_NN.png">
+<meta property="og:image" content="https://lrscy.github.io/2018/10/22/DeepLearningNotes-NNandDL/Structured_and_Unstructured_Data.png">
+<meta property="og:image" content="https://lrscy.github.io/2018/10/22/DeepLearningNotes-NNandDL/Comparation_between_deep_learning_and_machine_learning.png">
+<meta property="og:image" content="https://lrscy.github.io/2018/10/22/DeepLearningNotes-NNandDL/Iteration_process.png">
+<meta property="og:image" content="https://lrscy.github.io/2018/10/22/DeepLearningNotes-NNandDL/Standard_notations.png">
+<meta property="og:image" content="https://lrscy.github.io/2018/10/22/DeepLearningNotes-NNandDL/Standard_representations.png">
+<meta property="og:image" content="https://lrscy.github.io/2018/10/22/DeepLearningNotes-NNandDL/Input_X.png">
+<meta property="og:image" content="https://lrscy.github.io/2018/10/22/DeepLearningNotes-NNandDL/Output_y.png">
+<meta property="og:image" content="https://lrscy.github.io/2018/10/22/DeepLearningNotes-NNandDL/Logistic_Regression.png">
+<meta property="og:image" content="https://lrscy.github.io/2018/10/22/DeepLearningNotes-NNandDL/Neural_Network.png">
+<meta property="og:image" content="https://lrscy.github.io/2018/10/22/DeepLearningNotes-NNandDL/Computation_Graph.png">
+<meta property="og:image" content="https://lrscy.github.io/2018/10/22/DeepLearningNotes-NNandDL/Computing_Derivatives.png">
+<meta property="og:image" content="https://lrscy.github.io/2018/10/22/DeepLearningNotes-NNandDL/Logistic_Regression.png">
+<meta property="og:image" content="https://lrscy.github.io/2018/10/22/DeepLearningNotes-NNandDL/Forward_Propagation_NN.png">
+<meta property="og:image" content="https://lrscy.github.io/2018/10/22/DeepLearningNotes-NNandDL/Backward_Propagation_NN.png">
+<meta property="og:image" content="https://lrscy.github.io/2018/10/22/DeepLearningNotes-NNandDL/Activation_Functions.png">
+<meta property="article:published_time" content="2018-10-22T16:32:25.000Z">
+<meta property="article:modified_time" content="2020-07-09T08:05:39.927Z">
+<meta property="article:author" content="Ruosen Li">
+<meta property="article:tag" content="Coursera">
+<meta property="article:tag" content="Deep Learning">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://lrscy.github.io/2018/10/22/DeepLearningNotes-NNandDL/Standard_NN.png">
+
+<link rel="canonical" href="https://lrscy.github.io/2018/10/22/DeepLearningNotes-NNandDL/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true
+  };
+</script>
+
+  <title>DeepLearning.ai Note - Neural Network and Deep Learning | Meow</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"] > svg a {
+  fill: blue;
+  stroke: blue;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container {
+  overflow: auto hidden;
+}
+
+mjx-container + br {
+  display: none;
+}
+</style></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Meow</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-links">
+
+    <a href="/links/" rel="section"><i class="fa fa-fw fa-link"></i>links</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+  <a href="https://github.com/lrscy" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
+    <link itemprop="mainEntityOfPage" href="https://lrscy.github.io/2018/10/22/DeepLearningNotes-NNandDL/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ruosen Li">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Meow">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          DeepLearning.ai Note - Neural Network and Deep Learning
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2018-10-22 12:32:25" itemprop="dateCreated datePublished" datetime="2018-10-22T12:32:25-04:00">2018-10-22</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-07-09 04:05:39" itemprop="dateModified" datetime="2020-07-09T04:05:39-04:00">2020-07-09</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Deep-Learning/" itemprop="url" rel="index"><span itemprop="name">Deep Learning</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2018/10/22/DeepLearningNotes-NNandDL/" class="post-meta-item leancloud_visitors" data-flag-title="DeepLearning.ai Note - Neural Network and Deep Learning" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2018/10/22/DeepLearningNotes-NNandDL/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2018/10/22/DeepLearningNotes-NNandDL/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>This is a note of the first course of the “Deep Learning Specialization” at <a href="https://www.coursera.org/specializations/deep-learning" target="_blank" rel="noopener">Coursera</a>. The course is taught by Andrew Ng.</p>
+<p>Almost all materials in this note come from courses’ videos. The note combines knowledge from course and some of my understanding of these konwledge. I’ve reorganized the structure of the whole course according to my understanding. Thus, it doesn’t strictly follow the order of videos.</p>
+<p>In this note, I will keep all functions and equations vectorized (without for loop) as far as possible.</p>
+<p>If you want to read the notes which strictly follows the course, here are some recommendations:</p>
+<ul>
+<li><a href="https://github.com/mbadry1/DeepLearning.ai-Summary" target="_blank" rel="noopener">mbadry1’s notes on Github</a></li>
+<li><a href="https://github.com/ppant/deeplearning.ai-notes" target="_blank" rel="noopener">ppant’s notes on Github</a></li>
+</ul>
+<p>Some parts of this note are inspired from <a href="https://www.slideshare.net/TessFerrandez/notes-from-coursera-deep-learning-courses-by-andrew-ng" target="_blank" rel="noopener">Tess Ferrandez</a>.</p>
+<h1 id="Brief-Intro-to-Deep-Learning"><a href="#Brief-Intro-to-Deep-Learning" class="headerlink" title="Brief Intro to Deep Learning"></a>Brief Intro to Deep Learning</h1><p>To begin with, let’s focus on some basic concepts to gain some intuition of deep learning.</p>
+<h2 id="Stuctures-of-Deep-Learning"><a href="#Stuctures-of-Deep-Learning" class="headerlink" title="Stuctures of Deep Learning"></a>Stuctures of Deep Learning</h2><p>We start with supervised learning. Here are several types of neural network (NN) in the folloing chart:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">INPUT: X</th>
+<th style="text-align:center">OUTPUT: y</th>
+<th style="text-align:center">NN TYPE</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Home features</td>
+<td style="text-align:center">Price</td>
+<td style="text-align:center">Standard NN</td>
+</tr>
+<tr>
+<td style="text-align:center">Ad, user info</td>
+<td style="text-align:center">Click or not</td>
+<td style="text-align:center">Standard NN</td>
+</tr>
+<tr>
+<td style="text-align:center">Image</td>
+<td style="text-align:center">Objects</td>
+<td style="text-align:center">Convolutional NN (CNN)</td>
+</tr>
+<tr>
+<td style="text-align:center">Audio</td>
+<td style="text-align:center">Text Transcription</td>
+<td style="text-align:center">Recurrent NN (RNN)</td>
+</tr>
+<tr>
+<td style="text-align:center">English</td>
+<td style="text-align:center">Chineses</td>
+<td style="text-align:center">Recurrent NN (RNN)</td>
+</tr>
+<tr>
+<td style="text-align:center">Image, Radar info</td>
+<td style="text-align:center">Position of other cars</td>
+<td style="text-align:center">Custom NN</td>
+</tr>
+</tbody>
+</table>
+<p>Here are some pictures of Standard NN, Convolutional NN, Recurrent NN: </p>
+<div align="center"><img src="/2018/10/22/DeepLearningNotes-NNandDL/Standard_NN.png" height="70%" width="70%"><br>  <div class="image-caption">Standard NN</div><br>  <img src="/2018/10/22/DeepLearningNotes-NNandDL/Convolutional_NN.png" height="70%" width="70%"><br>  <div class="image-caption">Convolutional NN</div><br>  <img src="/2018/10/22/DeepLearningNotes-NNandDL/Recurrent_NN.png" height="70%" width="70%"><br>  <div class="image-caption">Recurrent NN</div><br></div>
+
+<h2 id="Data"><a href="#Data" class="headerlink" title="Data"></a>Data</h2><p>Neural Nework can deal with both stuctured data and unstructured data. The following will give you an intuition of both kinds of data.</p>
+<div align="center"><img src="/2018/10/22/DeepLearningNotes-NNandDL/Structured_and_Unstructured_Data.png" height="50%" width="50%"><br>  <div class="image-caption">Structured and Unstructured Data</div><br></div>
+
+<h2 id="Advantages"><a href="#Advantages" class="headerlink" title="Advantages"></a>Advantages</h2><p>Here are some conclusions of why deep learning is advanced comparing to traditional machine learning.</p>
+<p>Firstly, deep learning models performs better when dealing with big data. Here is a comparation of deep learning models and classic machine learing models:</p>
+<div align="center"><img src="/2018/10/22/DeepLearningNotes-NNandDL/Comparation_between_deep_learning_and_machine_learning.png"><br>  <div class="image-caption">Comparation between deep learning and machine learning</div><br></div>
+
+<p>Secondly, thanks to the booming development of hardware and advanced algorithm, computing is much faster than before. Thus, we can implement our idea and know whether it works or not in short time. As a result, we can run the following circle much faster than we image.</p>
+<div align="center"><img src="/2018/10/22/DeepLearningNotes-NNandDL/Iteration_process.png" height="50%" width="50%"><br>  <div class="image-caption">Iteration process</div><br></div>
+
+<h1 id="Basic-Symbols-of-the-Course"><a href="#Basic-Symbols-of-the-Course" class="headerlink" title="Basic Symbols of the Course"></a>Basic Symbols of the Course</h1><p>These basic symbols will be used through out the whole specialization.</p>
+<div align="center"><img src="/2018/10/22/DeepLearningNotes-NNandDL/Standard_notations.png"><br>  <div class="image-caption">Standard notations</div><br>  <img src="/2018/10/22/DeepLearningNotes-NNandDL/Standard_representations.png"><br>  <div class="image-caption">Standard representation</div><br></div>
+
+<p>Moreover, in this course, each input x will be stacked into columns and form the input matrix X.</p>
+<div align="center"><img src="/2018/10/22/DeepLearningNotes-NNandDL/Input_X.png" width="50%" height="50%"><br>  <div class="image-caption">Input X</div><br>  <img src="/2018/10/22/DeepLearningNotes-NNandDL/Output_y.png" width="50%" height="50%"><br>  <div class="image-caption">Output y</div><br></div>
+
+<h1 id="Neural-Network"><a href="#Neural-Network" class="headerlink" title="Neural Network"></a>Neural Network</h1><p>Reviewing the whole course, there are several common concepts between logistic regression and neural network (including both shallow and deep neural network). Thus, I draw conclusions on each concept and then apply them to both logistic regression and neural network.</p>
+<h2 id="Logistic-Regression-and-Neural-Network"><a href="#Logistic-Regression-and-Neural-Network" class="headerlink" title="Logistic Regression and Neural Network"></a>Logistic Regression and Neural Network</h2><p>First of all, here are pictures of logistic regression and neural network.</p>
+<div align="center"><img src="/2018/10/22/DeepLearningNotes-NNandDL/Logistic_Regression.png" width="60%" height="60%"><br>  <div class="image-caption">Logistic Regression</div><br>  <img src="/2018/10/22/DeepLearningNotes-NNandDL/Neural_Network.png" width="60%" height="60%"><br>  <div class="image-caption">Neural Network</div><br></div>
+
+<p>As we can see, logistic regression is also a kind of neural network, which has input layer and output layer and does not have hidden layers, so that it is also called mini neural network. In the following sections, I will write “neural network” to represent logistic regression and neural network and use pictures similar to the second one to represent neural network.</p>
+<h2 id="Computation-Graph"><a href="#Computation-Graph" class="headerlink" title="Computation Graph"></a>Computation Graph</h2><p>Computation graph is one of basic concepts in deep learning. By analyzing it, we could understand the whole process of computation process of neural network. The following is the basic computation graph:</p>
+<div align="center"><img src="/2018/10/22/DeepLearningNotes-NNandDL/Computation_Graph.png" width="80%" height="80%"></div>
+
+<p>In this picture, we can easily understand how $J(a,b,c)=3(a+bc)$ is computed. This process is similar to “Forward Propagation” process which I will say in next section. Moreover, in neural network, $J$ is called cost function. After computing cost function $J$, we need to feed it back to all of our parameters, such as $a$, $b$, $c$ in the picture. This process is called computing derivatives.</p>
+<div align="center"><img src="/2018/10/22/DeepLearningNotes-NNandDL/Computing_Derivatives.png" width="80%" height="80%"></div>
+
+<p>By analyzing the comutation graph, we can easily compute all deviatives. According to chain rule, we can compute $\frac{dJ}{da}$ by $\frac{dJ}{dv}\frac{dv}{da}$. So do parameter $b$ and $c$. The whole derivation process is similar to “backward propagation” process in neural network.</p>
+<h2 id="Forward-Propagation"><a href="#Forward-Propagation" class="headerlink" title="Forward Propagation"></a>Forward Propagation</h2><h3 id="Computation-on-single-neuron"><a href="#Computation-on-single-neuron" class="headerlink" title="Computation on single neuron"></a>Computation on single neuron</h3><div align="center"><img src="/2018/10/22/DeepLearningNotes-NNandDL/Logistic_Regression.png" width="60%" height="60%"><br>  <div class="image-caption">Computation on single neuron</div><br></div>
+
+<p>For every single neuron, the computing process is the same as the logistic regression. Logistic regression is basically the combination of linear regression and logistic function such as sigmoid. It has one input layer, x, and one output layer, a or $ \hat{y} $.</p>
+<p>The linear regression equation is:&ensp;$ z = w^Tx+b $<br>The sigmoid function equation is:&ensp;$ a = \sigma( z ) $<br>The combination euquation is:&emsp;&ensp;&nbsp;$ \hat{y} = a = \sigma( w^Tx + b ) $</p>
+<h3 id="The-whole-process-on-Neural-Network"><a href="#The-whole-process-on-Neural-Network" class="headerlink" title="The whole process on Neural Network"></a>The whole process on Neural Network</h3><div align="center"><img src="/2018/10/22/DeepLearningNotes-NNandDL/Forward_Propagation_NN.png" width="90%" height="90%"><br>  <div class="image-caption">Forward Propagation</div><br></div>
+
+<p>This is an example of neural network. Since it only has one hidden layer, it’s also called shallow neural network. The forward propagation process means that we compute the graph from left to the right in this picture.</p>
+<p>The whole process when computing the 1<sup>st</sup> layer (hidden layer) is as the following:</p>
+<p>$$<br>\begin{align}<br>Z^{[1]} &amp; = W^{[1]T}X + b^{[1]} \\<br>A^{[1]} &amp; = \sigma( Z^{[1]} )<br>\end{align}<br>$$</p>
+<p>In these equations:</p>
+<ul>
+<li>$W^{[1]T}$ is a $4 \times 3$ matrix. It is also written as $W^{[1]}$. Its shape is always $n^{[l]} \times n^{[l - 1]}$.</li>
+<li>$X$ is a $3 \times m$ matrix. Sometimes it is also called $A^{[0]}$.</li>
+<li>$b^{[1]}$ is a $4 \times m$ matrix. Its shape is always $n^{[l]} \times m$.</li>
+<li>$A^{[1]}$ is a $4 \times m$ matrix. Its shape is always $n^{[l]} \times m$.</li>
+<li>$\sigma$ is an element-wise function. It is called activation function.</li>
+</ul>
+<p>For each layer, it just repeats what previous layers do until the last layer (output layer).</p>
+<h3 id="Cost-function"><a href="#Cost-function" class="headerlink" title="Cost function"></a>Cost function</h3><p>Here is a definition of loss function and cost function.</p>
+<ul>
+<li>Loss function computes a single training example.</li>
+<li>Cost function is the average of the loss function of the whole training set.</li>
+</ul>
+<p>In traditional machine learning, we use square root error as loss function, which is $ L = \frac{1}{2}( \hat{y} - y )^2 $. But in this case, we don’t use it since most problems we try to solve are not convex.</p>
+<p>Here is the loss function we use:</p>
+<p>$$<br>L( \hat{y}, y ) = -( y \cdot log(\hat{y}) + ( 1 - y ) \cdot log( 1 - \hat{y} ) )<br>$$</p>
+<p>For this loss function:</p>
+<ul>
+<li>if y = 1, then $ L = -y \cdot log(\hat{y}) $ and it will close to 0 when $ \hat{y} $ near 1.</li>
+<li>if y = 0, then $ L = -( 1 - y ) \cdot log( 1 - \hat{y} ) $ and it will close to 0 when $ \hat{y} $ near 0.</li>
+</ul>
+<p>Then the cost function is: $$ J( w, b ) = \frac{1}{m}\sum_{i=1}^{m} L( \hat{y}, y ) $$</p>
+<h2 id="Backward-Propagation"><a href="#Backward-Propagation" class="headerlink" title="Backward Propagation"></a>Backward Propagation</h2><p>Here, we use gradient descent as our backward propagation method.</p>
+<h3 id="Compute-Gradients"><a href="#Compute-Gradients" class="headerlink" title="Compute Gradients"></a>Compute Gradients</h3><div align="center"><img src="/2018/10/22/DeepLearningNotes-NNandDL/Backward_Propagation_NN.png" width="90%" height="90%"><br>  <div class="image-caption">Backward Propagation</div><br></div>
+
+<p>As we can see in the picture, it is a simplified computation graph. The neural network is on the right-top, which is almost the same as the neural network we discussing in previous section. Backward Propagation is computing derivatives from the right to the left. By following the backward process, we can get derivatives for all parameters, including $W^{[1]}$, $b^{[1]}$, $W^{[2]}$, $b^{[2]}$.</p>
+<p>Here I give a rough derivation example of computing gradients of parameter $W^{[1]}$.</p>
+<p>$$<br>\begin{align}<br>\frac{\partial L}{\partial Z^{[1]}} &amp; = W^{[2]T}\frac{\partial L}{\partial Z^{[2]}} \cdot {\sigma}^{[1]\prime}(Z^{[1]}) \\<br>\frac{dL}{dW^{[1]}} &amp; = \frac{\partial L}{\partial Z^{[1]}}\frac{dZ^{[1]}}{dW^{[1]}} \\<br>                    &amp; = \frac{\partial L}{\partial Z^{[1]}}A^{[0]T} \\<br>\frac{dL}{db^{[1]}} &amp; = \frac{\partial L}{\partial Z^{[1]}}\frac{dZ^{[1]}}{db^{[1]}} \\<br>                    &amp; = \frac{\partial L}{\partial Z^{[1]}}<br>\end{align}<br>$$</p>
+<p>It is similar to compute parameters in other layers. In these equations:</p>
+<ul>
+<li>$\frac{dL}{dW^{[1]}}$ has the same shape as $W^{[1]}$. So do other layers.</li>
+<li>$\frac{dL}{db^{[1]}}$ has the same shape as $b^{[1]}$. So do other layers.</li>
+<li>the $\cdot$ in first line is an element-wise product.</li>
+</ul>
+<h3 id="Update-parameters"><a href="#Update-parameters" class="headerlink" title="Update parameters"></a>Update parameters</h3><p>After computing gradients, we can update our parameters quickly.</p>
+<p>For every parameters (Take layer1 as an example):</p>
+<p>$$<br>\begin{align}<br>W^{[1]} &amp; = W^{[1]} - \alpha \frac{dL}{dW^{[1]}} \\<br>b^{[1]} &amp; = b^{[1]} - \alpha \frac{dL}{db^{[1]}}<br>\end{align}<br>$$</p>
+<p>In above equations, $\alpha$ is called learning rate, which we need to determine before training.</p>
+<h2 id="Activation-Functions"><a href="#Activation-Functions" class="headerlink" title="Activation Functions"></a>Activation Functions</h2><p>In previous sections, notation $\sigma$ is used to represent activation function. In neural network, there are five common activation functions: Sigmoid, Tanh, ReLU, Leaky ReLU, and Exponential LU.</p>
+<div align="center"><img src="/2018/10/22/DeepLearningNotes-NNandDL/Activation_Functions.png" width="90%" height="90%"><br>  <div class="image-caption">Activation Functions</div><br></div>
+
+<p>In the course, Prof. Andrew Ng introduces the first four activation functions.</p>
+<p>Here are some experience on choosing those activation functions:</p>
+<ul>
+<li><strong>Sigmoid</strong>: It is usually used in output layer to generate results between 0 and 1 when doing binary classification. In other case, you should not use it.</li>
+<li><strong>Tanh</strong>: It always works better than sigmoid function since its value is between -1 and 1, so that neural network can learn more information by using it than using sigmoid function.</li>
+<li><strong>ReLU</strong>: The most commonly used activation function is ReLU function. If you don’t want to use it, you can choose other ReLU derivatives, such as Leaky ReLU.</li>
+</ul>
+<h2 id="Parameters-and-Hyperparameters"><a href="#Parameters-and-Hyperparameters" class="headerlink" title="Parameters and Hyperparameters"></a>Parameters and Hyperparameters</h2><h2 id="Comparation-of-shallow-and-deep-neural-network"><a href="#Comparation-of-shallow-and-deep-neural-network" class="headerlink" title="Comparation of shallow and deep neural network"></a>Comparation of shallow and deep neural network</h2>
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>Post author:  </strong>Ruosen Li
+  </li>
+  <li class="post-copyright-link">
+    <strong>Post link: </strong>
+    <a href="https://lrscy.github.io/2018/10/22/DeepLearningNotes-NNandDL/" title="DeepLearning.ai Note - Neural Network and Deep Learning">https://lrscy.github.io/2018/10/22/DeepLearningNotes-NNandDL/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/en" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Coursera/" rel="tag"># Coursera</a>
+              <a href="/tags/Deep-Learning/" rel="tag"># Deep Learning</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2018/03/20/Data-clean-for-Machine-Translation-CE/" rel="prev" title="数据清洗工具及相关使用方法">
+      <i class="fa fa-chevron-left"></i> 数据清洗工具及相关使用方法
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/01/27/LeetCode/" rel="next" title="LeetCode Solution Summary">
+      LeetCode Solution Summary <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Brief-Intro-to-Deep-Learning"><span class="nav-number">1.</span> <span class="nav-text">Brief Intro to Deep Learning</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Stuctures-of-Deep-Learning"><span class="nav-number">1.1.</span> <span class="nav-text">Stuctures of Deep Learning</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Data"><span class="nav-number">1.2.</span> <span class="nav-text">Data</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Advantages"><span class="nav-number">1.3.</span> <span class="nav-text">Advantages</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Basic-Symbols-of-the-Course"><span class="nav-number">2.</span> <span class="nav-text">Basic Symbols of the Course</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Neural-Network"><span class="nav-number">3.</span> <span class="nav-text">Neural Network</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Logistic-Regression-and-Neural-Network"><span class="nav-number">3.1.</span> <span class="nav-text">Logistic Regression and Neural Network</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Computation-Graph"><span class="nav-number">3.2.</span> <span class="nav-text">Computation Graph</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Forward-Propagation"><span class="nav-number">3.3.</span> <span class="nav-text">Forward Propagation</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Computation-on-single-neuron"><span class="nav-number">3.3.1.</span> <span class="nav-text">Computation on single neuron</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#The-whole-process-on-Neural-Network"><span class="nav-number">3.3.2.</span> <span class="nav-text">The whole process on Neural Network</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Cost-function"><span class="nav-number">3.3.3.</span> <span class="nav-text">Cost function</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Backward-Propagation"><span class="nav-number">3.4.</span> <span class="nav-text">Backward Propagation</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Compute-Gradients"><span class="nav-number">3.4.1.</span> <span class="nav-text">Compute Gradients</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Update-parameters"><span class="nav-number">3.4.2.</span> <span class="nav-text">Update parameters</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Activation-Functions"><span class="nav-number">3.5.</span> <span class="nav-text">Activation Functions</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Parameters-and-Hyperparameters"><span class="nav-number">3.6.</span> <span class="nav-text">Parameters and Hyperparameters</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Comparation-of-shallow-and-deep-neural-network"><span class="nav-number">3.7.</span> <span class="nav-text">Comparation of shallow and deep neural network</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Ruosen Li</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">37</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">30</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/lrscy" title="GitHub → https://github.com/lrscy" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:ruosenlee@gmail.com" title="E-Mail → mailto:ruosenlee@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/en" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ruosen Li</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.7.2
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : true,
+      notify     : false,
+      appId      : 'flgn5yN4nyhhyKPBimaT89Q8-gzGzoHsz',
+      appKey     : '4yw3zmlMB7KjyFIzwIlYUnKz',
+      placeholder: "Just go go",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : true,
+      lang       : 'en, zh-cn' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : true,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>
