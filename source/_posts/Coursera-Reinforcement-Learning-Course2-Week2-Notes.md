@@ -31,6 +31,7 @@ By the law of large numbers the sequence of averages of these estimates converge
 
 | DP                                                           | Monte Carlo                                                  |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| Need to know the **environment transition probabilities**.   | **Just need experiences**. No need to keep a large model of the environment. |
 | Backup diagram shows **all possible transitions**.           | On Backup diagram, Monte Carlo diagram shows **only those sampled on the one episode**. |
 | The DP diagram includes **only one-step transitions**.       | The Monte Carlo diagram goes **all the way to the end of the episode** on the backup diagram. |
 | DP method use successors calculated state to calculate current state value, which **do not handle each states independently**. Which is Bootstrap. | **The estimates for each state are independent**. In other words, Monte Carlo methods DO NOT bootstrap. |
@@ -43,7 +44,7 @@ If a model is not available, then it is particularly useful to estimate **action
 
 The ONLY complication is that many state–action pairs may NEVER be visited. We need to estimate the value of all the actions from each state, not just the one we currently favor. This is the general problem of **maintaining exploration**, as discussed in the context of the [k-armed bandit problem](/2020/03/03/Coursera-Reinforcement-Learning-Course1-Week1-Notes/).
 
-- The first way to solve it is to try **infinite times with infinite number of episodes with nonzero probability to start episodes on each state-action pair** so that it is guaranteed that each state-action pair is visited and has a nonzero probability. We call this the <u>assumption</u> of **exploring starts**.
+- The first way to solve it is to try **infinite times with infinite number of episodes begin with nonzero probability on each state-action pair to start episodes** so that it is guaranteed that each state-action pair is visited and has a nonzero probability. We call this the <u>assumption</u> of **exploring starts**.
 - The most common alternative approach is to consider only policies that are **stochastic** with a nonzero probability **of selecting all actions in each state**.
 
 Obviously, in reality, we cannot gather infinite episodes from the interaction with the environment. It will be solved later.
@@ -87,16 +88,18 @@ The algorithm pseudo-code is below, it gives the solution of infinite number of 
 
 ## Exploring Starts Solution
 
+Exploring starts is a good method but cannot be applied to every task, such as self-driving cars. There are two alternative solutions:
+
 - On-policy control methods attempt to **evaluate or improve the policy that is used to make decisions**.
 - Off-policy control methods evaluate or **improve a policy different from that used to generate the data**. 
 
 ### On-policy Methods
 
-In on-policy control methods the policy is generally **soft**, meaning that $\pi(a|s)>0$  for all $s \in S$ and all $a \in A(s)$, but **gradually shifted closer** and closer **to a deterministic optimal policy**. The overall idea of on-policy Monte Carlo control is still that of GPI. In our on-policy method we will move it only to an $\epsilon-greedy$ policy. For any $\epsilon-soft$ policy, $\pi$, any $\epsilon-greedy$ policy with respect to $q\_\pi$ is guaranteed to be better than or equal to $\pi$. The complete algorithm is given in the box below.
+In on-policy control methods the policy is generally **soft**, meaning that $\pi(a|s)>0$  for all $s \in S$ and all $a \in A(s)$, but **gradually shifted closer** and closer **to a deterministic optimal policy**. It means, in the on-policy method, we will move it **only to an $\epsilon-greedy$ policy** but not the optimal policy. The overall idea of on-policy Monte Carlo control is still that of GPI. For any $\epsilon-soft$ policy, $\pi$, any $\epsilon-greedy$ policy with respect to $q\_\pi$ is guaranteed to be better than or equal to $\pi$. The complete algorithm is given in the box below.
 
 ![On-policy first-visit MC control (for $\epsilon-soft$ policies)](./Coursera-Reinforcement-Learning-Course2-Week2-Notes/5.4 On-policy first-visit MC control.png)
 
-That any $\epsilon-greedy$ policy with respect to $q\_\pi$ is an improvement over any $\epsilon-soft$ policy $\pi$ is assured by the policy improvement theorem. The proof can be found in page 101-102 in [the book](http://www.incompleteideas.net/book/RLbook2018.pdf).
+That any $\epsilon-greedy$ policy with respect to $q\_\pi$ is an improvement over any $\epsilon-soft$ policy $\pi$ is assured by the policy improvement theorem. The proof can be found in page 101-102 in [the book](http://www.incompleteideas.net/book/RLbook2018.pdf). Although the $\epsilon-soft$ policy performs worse than the optimal policy in general, it always performs reasonably well and allow us to get rid of exploring starts.
 
 ### Off-policy Methods (Off-policy Monte Carlo Prediction via Importance Sampling)
 
@@ -112,7 +115,7 @@ Pr\{A\_t, S\_{t+1}, A\_{t+1}, \cdots, S\_T|S\_t, A\_{t:T-1} \sim \pi\}=\prod\_{k
 $$
 where $p$ is the [state-transition probability function](/2020/03/03/Coursera-Reinforcement-Learning-Course1-Week2-Notes/#Common-Used-Formulas). Thus, the relative probability of the trajectory under the target and behavior policies is:
 $$
-\rho\_{t:T-1} \doteq \frac{\prod\_{k=t}^{T-1}\pi(A\_k|S\_k)p(S\_{k+1}|S\_k, A\_k)}{\prod\_{k=t}^{T-1}b(A\_k|S\_k)p(S\_{k+1}|S\_k, A\_k)}=\frac{\pi(A\_k|S\_k)}{b(A\_k|S\_k)}
+\rho\_{t:T-1} \doteq \frac{\prod\_{k=t}^{T-1}\pi(A\_k|S\_k)p(S\_{k+1}|S\_k, A\_k)}{\prod\_{k=t}^{T-1}b(A\_k|S\_k)p(S\_{k+1}|S\_k, A\_k)}=\prod\_{k=t}^{T-1}\frac{\pi(A\_k|S\_k)}{b(A\_k|S\_k)}
 $$
 Since both policies depend on the same episodes, although we don't know the exactly state transition probabilities, they are obviously identical. The importance sampling ratio ends up **depending only on the two policies and the sequence**, not on the MDP.
 
