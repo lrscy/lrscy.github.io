@@ -27,7 +27,7 @@ $$
 \begin{align}
 J &= \frac{\omega^TS\_b\omega}{\omega^TS\_\omega\omega} \\\\
 S\_\omega &= \sum\_0 + \sum\_1 \\\\
-&= \sum\_{x\inX\_0}(x-\mu\_0)(x-\mu\_0)^T + \sum\_{x\inX\_1}(x-\mu\_1)(x-\mu\_1)^T \\\\
+&= \sum\_{x\in X\_0}(x-\mu\_0)(x-\mu\_0)^T + \sum\_{x\in X\_1}(x-\mu\_1)(x-\mu\_1)^T \\\\
 S\_b &= (\mu\_0-\mu\_1)(\mu\_0-\mu\_1)^T \\\\
 \omega &= S\_\omega^{-1}(\mu\_0-\mu\_1)
 \end{align}
@@ -47,8 +47,8 @@ $$
 RBF网络
 $$
 \begin{align}
-\phi(x) &= \sum\_{i=1}^q\omega\_i\ro(x,c\_i) \\\\
-\ro(x,c\_i) &= e^{-\beta\_i\(\vert \vert\)x-c\_i\(\vert \vert\)^2}
+\phi(x) &= \sum\_{i=1}^q\omega\_i\rho(x,c\_i) \\\\
+\rho(x,c\_i) &= e^{-\beta\_i\|\|x-c\_i\|\|^2}
 \end{align}
 $$
 $q$为隐层神经元个数，$c\_i$和$\omega\_i$分别是第i个神经元对应的中心和权重。确定中心的方法常用的有随机采样和聚类。
