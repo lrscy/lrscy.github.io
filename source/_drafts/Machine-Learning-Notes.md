@@ -27,8 +27,8 @@ $$
 \begin{align}
 J &= \frac{\omega^TS\_b\omega}{\omega^TS\_\omega\omega} \\\\
 S\_\omega &= \sum\_0 + \sum\_1 \\\\
-&= \sum\_{x\inX\_0}(x-\mu\_0)(x-\mu\_0)^T + \sum\_{x\inX\_1}(x-\mu\_1)(x-\mu\_1)^T
-S\_b &= (\mu\_0-\mu\_1)(\mu\_0-\mu\_1)^T
+&= \sum\_{x\inX\_0}(x-\mu\_0)(x-\mu\_0)^T + \sum\_{x\inX\_1}(x-\mu\_1)(x-\mu\_1)^T \\\\
+S\_b &= (\mu\_0-\mu\_1)(\mu\_0-\mu\_1)^T \\\\
 \omega &= S\_\omega^{-1}(\mu\_0-\mu\_1)
 \end{align}
 $$
@@ -39,3 +39,24 @@ $$
 - 预剪枝：分树时候计算是否比现在更优，贪心
 - 后减枝：生成全树后减枝，减后是否比减前更优
 
+神经网络跳出局部最小：
+- 多组初始化
+- 模拟退火，每一步以一定概率接受“次优解”，概率逐步降低依确保稳定
+- 随机梯度下降
+
+RBF网络
+$$
+\begin{align}
+\phi(x) &= \sum\_{i=1}^q\omega\_i\ro(x,c\_i) \\\\
+\ro(x,c\_i) &= e^{-\beta\_i\(\vert \vert\)x-c\_i\(\vert \vert\)^2}
+\end{align}
+$$
+$q$为隐层神经元个数，$c\_i$和$\omega\_i$分别是第i个神经元对应的中心和权重。确定中心的方法常用的有随机采样和聚类。
+
+ART网络：竞争型学习代表
+可进行增量学习和在线学习
+
+SOM网络：可用于降维。为每个神经元找到合适的权向量，在低维空间保持拓扑结构。
+
+Boltzmann机
+整个图就是个最大团。一般使用受限Boltzmann机。
